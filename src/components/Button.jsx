@@ -31,7 +31,7 @@ export class Button extends Component {
 
 const styles = StyleSheet.create({
   Button: {
-    backgroundColor: "#00f",
+    backgroundColor: "#008fca",
     paddingTop: 8,
     paddingBottom: 8,
     paddingLeft: 16,
