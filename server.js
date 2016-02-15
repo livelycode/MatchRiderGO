@@ -18,7 +18,7 @@ var passenger = {
 };
 
 var session = {
-  sessionId: "42",
+  sessionId: "ab12",
   userId: "42"
 };
 
