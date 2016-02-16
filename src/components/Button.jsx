@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 import React, {
   Component,
   StyleSheet,
   Text,
   View,
   TouchableHighlight
-} from 'react-native';
+} from "react-native";
 
 export class Button extends Component {
   constructor (props) {
