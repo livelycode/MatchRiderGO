@@ -79,17 +79,6 @@ export class AvailableRidesScene extends Component {
   }
 }
 
-class Thumb extends Component {
-  render() {
-    return (
-      <View style={styles.button}>
-        <Image style={styles.img} source={{uri:this.props.uri}} />
-      </View>
-    );
-  }
-}
-
-
 
 const styles = StyleSheet.create({
   text_center: {
