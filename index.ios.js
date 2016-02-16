@@ -1,16 +1,19 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 import React, {
   AppRegistry,
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  Image,
+  TextInput,
+  TouchableHighlight,
+  Navigator
 } from 'react-native';
 
+import Login from "./src/Login";
+import { AvailableRidesScene } from "./src/AvailableRides";
+import { AccountScene } from "./src/Account";
 import { Provider } from 'react-redux/native';
 import { createStore, applyMiddleware } from "redux";
 import reducer from "./src/flux/reducer";
@@ -21,63 +24,20 @@ import { connect } from 'react-redux';
 const createStoreWithMiddleware = applyMiddleware(actionMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducer);
 
-class DefaultText extends Component {
-  componentDidMount () {
-    this.props.login({email: "foo", password: "bar"})
-  }
-  render () {
-    return  (
-      <Text style={styles.instructions}>
-        {this.props.text}
-      </Text>
-    );
-  }
-}
-
-const DefaultTextContainer = connect(
-  (state) => {
-    return {
-      text: state.getIn(["userId"])
-    }
-  },
-  actionCreators
-)(DefaultText);
-
 class MatchRiderGO extends Component {
   render() {
     return (
-        <Provider store={store}>
-        {() =>
-          <View style={styles.container}>
-            <Text style={styles.welcome}>
-              MatchRider GO
-            </Text>
-            <DefaultTextContainer></DefaultTextContainer>
-          </View>
+      <Provider store={store}>
+        {() => <Navigator
+              initialRoute={{name: "Login", index: 0}}
+              renderScene={(route, navigator) => <Login/>}
+          />
         }
-        </Provider>
+      </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
-  }
-});
-
+const styles = StyleSheet.create({});
 
 AppRegistry.registerComponent('MatchRiderGO', () => MatchRiderGO);

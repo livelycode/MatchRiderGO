@@ -1,7 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 import React, {
   AppRegistry,
@@ -15,24 +11,33 @@ import React, {
   Navigator
 } from 'react-native';
 
-import {LoginScene} from "./src/Login";
-import {AvailableRidesScene} from "./src/AvailableRides";
-import {AccountScene} from "./src/Account";
+import Login from "./src/Login";
+import { AvailableRidesScene } from "./src/AvailableRides";
+import { AccountScene } from "./src/Account";
+import { Provider } from 'react-redux/native';
+import { createStore, applyMiddleware } from "redux";
+import reducer from "./src/flux/reducer";
+import * as actionCreators from "./src/flux/actionCreators";
+import actionMiddleware from "./src/flux/actionMiddleware";
+import { connect } from 'react-redux';
+
+const createStoreWithMiddleware = applyMiddleware(actionMiddleware)(createStore);
+const store = createStoreWithMiddleware(reducer);
 
 class MatchRiderGO extends Component {
   render() {
     return (
-     <Navigator
-        initialRoute={{name: "LoginScene", index: 0}}
-        renderScene={(route, navigator) =>
-          <LoginScene />
+      <Provider store={store}>
+        {() => <Navigator
+              initialRoute={{name: "Login", index: 0}}
+              renderScene={(route, navigator) => <Login/>}
+          />
         }
-     />
-    )
+      </Provider>
+    );
   }
 }
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});
 
 AppRegistry.registerComponent('MatchRiderGO', () => MatchRiderGO);

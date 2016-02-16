@@ -9,12 +9,11 @@ import React, {
   TextInput,
   TouchableHighlight
 } from "react-native";
-
 import {Map} from "immutable";
-
 import {Button} from "./components/Button";
 import {MatchRiderLogo} from "./components/Image";
-
+import * as actionCreators from "./flux/actionCreators";
+import { connect } from 'react-redux';
 
 class MRTextInput extends TextInput {
 
@@ -63,17 +62,13 @@ export class LoginScene extends Component {
       email: "",
     };
   }
-
   verifyData () {
     alert(this.state.email);
+    
   }
-
   sendData () {
-    if(this.verifyData()) {
-
-    }
+    this.props.login({email: "foo", password: "bar"})
   }
-
   render () {
     return (
       <View style={[styles.Col__middle, {backgroundColor: "#ffffff", flex: 1}]}>
@@ -98,6 +93,17 @@ export class LoginScene extends Component {
     );
   }
 }
+
+export default connect(
+  (state) => {
+    return {
+      userId: state.getIn(["userId"]),
+      sessionId: state.getIn(["sessionId"])
+    }
+  },
+  actionCreators
+)(LoginScene);
+
 
 
 const styles = StyleSheet.create({
