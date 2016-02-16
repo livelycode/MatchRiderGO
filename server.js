@@ -1,5 +1,6 @@
 var express = require("express");
 var app = express();
+var bodyParser = require("body-parser");
 
 // --- TEST DATA ---
 var states = {
@@ -63,45 +64,39 @@ var ride = {
 
 // --- ROUTES ---
 
+app.use(bodyParser.json());
 app.use("/assets", express.static(__dirname + "/assets"));
   
 app.post("/login", function (req, res) {
-  console.log(req);
+  console.log(req.body);
   res.send(session);
 });
 
 app.post("/account-details", function (req, res) {
-  console.log(req);
   res.send(passenger);
 });
 
-app.post("/match-points", function (req, res) {
-  console.log(req);
+app.post("/matchpoints", function (req, res) {
   res.send([location, destination]);
 });
 
 app.post("/available-rides", function (req, res) {
-  console.log(req);
   res.send([ride]);
 });
 
 app.post("/booked-rides", function (req, res) {
-  console.log(req);
   res.send([ride]);
 });
 
 app.post("/book-ride", function (req, res) {
-  console.log(req);
   res.send(states.SUCCESS);
 });
 
 app.post("/cancel-ride", function (req, res) {
-  console.log(req);
   res.send(states.SUCCESS);
 });
 
 app.post("/update-user", function (req, res) {
-  console.log(req);
   res.send(states.SUCCESS);
 });
 
