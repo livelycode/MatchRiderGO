@@ -33,9 +33,9 @@ export class RideLocations extends View {
   render () {
     return (
       <View>
-        <View style={{flex: 60, flexDirection: "row", alignItems: "center"}}>
+        <View style={[styles.Row__center, {flex: 60}]}>
           <View style={{flex: 20}}>
-            <Badge style={{backgroundColor: "#5DAE41"}}>Start</Badge>
+            <Badge style={{backgroundColor: "#5dae41"}}>Start</Badge>
           </View>
 
           <View style={{flex: 80, paddingLeft: 10}}>
@@ -43,9 +43,9 @@ export class RideLocations extends View {
           </View>
         </View>
 
-        <View style={{flex: 40, flexDirection: "row", marginTop: 5, alignItems: "center"}}>
+        <View style={[styles.Row__center, {flex: 40, marginTop: 5}]}>
           <View style={{flex: 20}}>
-            <Badge style={{backgroundColor: "#FF6900"}}>Ziel</Badge>
+            <Badge style={{backgroundColor: "#ff6900"}}>Ziel</Badge>
           </View>
 
           <View style={{flex: 80, paddingLeft: 10}}>
@@ -59,19 +59,20 @@ export class RideLocations extends View {
 
 
 const styles = StyleSheet.create({
+  Row: {
+    flexDirection: "row",
+  },
+
+  Row__center: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
   Badge: {
     borderRadius: 4,
     paddingTop: 2,
     paddingBottom: 2,
     paddingLeft: 8,
     paddingRight: 8,
-  },
-
-  Badge__green: {
-    backgroundColor: "green",
-  },
-
-  Badge__blue: {
-    backgroundColor: "blue",
   },
 });

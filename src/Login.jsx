@@ -56,20 +56,20 @@ class PasswordInput extends MRTextInput {
 export class LoginScene extends Component {
   render() {
     return (
-      <View style={[styles.Col, styles.Row, styles.Row_column, styles.Row_middle]}>
-        <View style={styles.Row_middle}>
+      <View style={[styles.Col__middle, {backgroundColor: "#ffffff", flex: 1}]}>
+        <View style={{alignSelf: "center"}}>
           <MatchRiderLogo />
         </View>
-        <View style={styles.rhythm}>
-          <View style={[styles.TextInputWrapper, styles.ElementWrapper]}>
+        <View style={{marginTop: 20, paddingLeft: 30, paddingRight: 30}}>
+          <View style={[styles.TextInputView]}>
             <EmailInput />
           </View>
 
-          <View style={[styles.TextInputView, styles.ElementWrapper, styles.half_rhythm]}>
+          <View style={[styles.TextInputView, {marginTop: 10}]}>
             <PasswordInput />
           </View>
 
-          <View style={[styles.half_rhythm, styles.ElementWrapper, {alignSelf: "flex-end"}]}>
+          <View style={[{alignSelf: "flex-end", marginTop: 10}]}>
             <Button text="Login" />
           </View>
         </View>
@@ -79,27 +79,8 @@ export class LoginScene extends Component {
 }
 
 const styles = StyleSheet.create({
-  rhythm: {
-    marginTop: 20,
-  },
-
-  half_rhythm: {
-    marginTop: 10,
-  },
-
-  Row: {
-    flexDirection: "row",
-  },
-
-  Row_column: {
+  Col__middle: {
     flexDirection: "column",
-  },
-
-  Col: {
-    flex: 1,
-  },
-
-  Row_middle: {
     alignItems: "center",
     justifyContent: "center",
   },
@@ -110,18 +91,6 @@ const styles = StyleSheet.create({
 
   TextInput: {
     padding: 4,
-  },
-
-  ElementWrapper: {
-    marginLeft: 30,
-    marginRight: 30,
-  },
-
-  TextInputWrapper: {
-    padding: 0,
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: "#e9e9e9",
   },
 
   TextInputView: {

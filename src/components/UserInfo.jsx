@@ -19,4 +19,3 @@ export const UserAvatar = () => (
 
 const styles = StyleSheet.create({
 });
-

@@ -4,6 +4,7 @@ import React, {
   Image,
 } from "react-native";
 
+
 export const MatchRiderLogo = () => (
   <Image
     style={styles.Logo}

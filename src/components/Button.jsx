@@ -7,6 +7,7 @@ import React, {
   TouchableHighlight
 } from "react-native";
 
+
 export class Button extends Component {
   constructor (props) {
     super(props);
@@ -22,8 +23,18 @@ export class Button extends Component {
       <TouchableHighlight
         onPress={this.props.onPress}
         underlayColor={this.props.underlayColor}>
-        <View style={[styles.Button, this.props.style.backgroundColor ? {backgroundColor: this.props.style.backgroundColor} : null]}>
-          <Text style={[styles.ButtonText, this.props.style.color ? {color : this.props.style.color} : null]}>{this.props.text}</Text>
+        <View
+          style={[styles.Button,
+                    this.props.style.backgroundColor
+                    ? {backgroundColor: this.props.style.backgroundColor}
+                    : null]}>
+          <Text
+            style={[styles.ButtonText,
+                      this.props.style.color
+                      ? {color : this.props.style.color}
+                      : null]}>
+            {this.props.text}
+          </Text>
         </View>
       </TouchableHighlight>
     )
@@ -44,4 +55,3 @@ const styles = StyleSheet.create({
     color: "#fff",
   }
 });
-

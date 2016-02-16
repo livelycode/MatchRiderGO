@@ -4,6 +4,7 @@ import React, {
   View,
 } from "react-native";
 
+
 export class MenuBar extends View {
   constructor (props) {
     super(props);
