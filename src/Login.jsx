@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 import React, {
   AppRegistry,
   Component,
@@ -8,26 +8,23 @@ import React, {
   Image,
   TextInput,
   TouchableHighlight
-} from 'react-native';
+} from "react-native";
+
+import {Map} from "immutable";
 
 import {Button} from "./components/Button";
 import {MatchRiderLogo} from "./components/Image";
 
-class MRTextInput extends TextInput {
-  constructor (props) {
-    super(props);
 
-    this.state = {
-      text: "",
-    };
-  }
+class MRTextInput extends TextInput {
 
   render () {
     return (
       <TextInput
         style={styles.TextInput}
         underlineColorAndroid = "transparent"
-        onChangeText={(text) => this.setState({text})}
+        onChangeText={this.props.onChange}
+        value={this.props.value}
         placeholder={this.props.placeholder}
       />
     )
@@ -54,7 +51,30 @@ class PasswordInput extends MRTextInput {
 
 
 export class LoginScene extends Component {
-  render() {
+
+  constructor (props) {
+    super(props);
+
+    this.veryData = this.verifyData.bind(this);
+    this.sendData = this.sendData.bind(this);
+
+    this.state = {
+      password: "",
+      email: "",
+    };
+  }
+
+  verifyData () {
+    alert(this.state.email);
+  }
+
+  sendData () {
+    if(this.verifyData()) {
+
+    }
+  }
+
+  render () {
     return (
       <View style={[styles.Col__middle, {backgroundColor: "#ffffff", flex: 1}]}>
         <View style={{alignSelf: "center"}}>
@@ -62,21 +82,23 @@ export class LoginScene extends Component {
         </View>
         <View style={{marginTop: 20, paddingLeft: 30, paddingRight: 30}}>
           <View style={[styles.TextInputView]}>
-            <EmailInput />
+            <EmailInput value={this.state.email} onChange={(email) =>
+              this.setState({email})} />
           </View>
 
           <View style={[styles.TextInputView, {marginTop: 10}]}>
-            <PasswordInput />
+            <PasswordInput value={this.state.password} onChange={(password) => this.setState({password})} />
           </View>
 
           <View style={[{alignSelf: "flex-end", marginTop: 10}]}>
-            <Button text="Login" />
+            <Button text="Login" onPress={this.sendData} />
           </View>
         </View>
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   Col__middle: {
