@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 import React, {
   AppRegistry,
   Component,
@@ -8,26 +8,23 @@ import React, {
   Image,
   TextInput,
   TouchableHighlight
-} from 'react-native';
+} from "react-native";
+
+import {Map} from "immutable";
 
 import {Button} from "./components/Button";
 import {MatchRiderLogo} from "./components/Image";
 
-class MRTextInput extends TextInput {
-  constructor (props) {
-    super(props);
 
-    this.state = {
-      text: "",
-    };
-  }
+class MRTextInput extends TextInput {
 
   render () {
     return (
       <TextInput
         style={styles.TextInput}
         underlineColorAndroid = "transparent"
-        onChangeText={(text) => this.setState({text})}
+        onChangeText={this.props.onChange}
+        value={this.props.value}
         placeholder={this.props.placeholder}
       />
     )
@@ -54,23 +51,47 @@ class PasswordInput extends MRTextInput {
 
 
 export class LoginScene extends Component {
-  render() {
+
+  constructor (props) {
+    super(props);
+
+    this.veryData = this.verifyData.bind(this);
+    this.sendData = this.sendData.bind(this);
+
+    this.state = {
+      password: "",
+      email: "",
+    };
+  }
+
+  verifyData () {
+    alert(this.state.email);
+  }
+
+  sendData () {
+    if(this.verifyData()) {
+
+    }
+  }
+
+  render () {
     return (
-      <View style={[styles.Col, styles.Row, styles.Row_column, styles.Row_middle]}>
-        <View style={styles.Row_middle}>
+      <View style={[styles.Col__middle, {backgroundColor: "#ffffff", flex: 1}]}>
+        <View style={{alignSelf: "center"}}>
           <MatchRiderLogo />
         </View>
-        <View style={styles.rhythm}>
-          <View style={[styles.TextInputWrapper, styles.ElementWrapper]}>
-            <EmailInput />
+        <View style={{marginTop: 20, paddingLeft: 30, paddingRight: 30}}>
+          <View style={[styles.TextInputView]}>
+            <EmailInput value={this.state.email} onChange={(email) =>
+              this.setState({email})} />
           </View>
 
-          <View style={[styles.TextInputView, styles.ElementWrapper, styles.half_rhythm]}>
-            <PasswordInput />
+          <View style={[styles.TextInputView, {marginTop: 10}]}>
+            <PasswordInput value={this.state.password} onChange={(password) => this.setState({password})} />
           </View>
 
-          <View style={[styles.half_rhythm, styles.ElementWrapper, {alignSelf: "flex-end"}]}>
-            <Button text="Login" />
+          <View style={[{alignSelf: "flex-end", marginTop: 10}]}>
+            <Button text="Login" onPress={this.sendData} />
           </View>
         </View>
       </View>
@@ -78,28 +99,10 @@ export class LoginScene extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
-  rhythm: {
-    marginTop: 20,
-  },
-
-  half_rhythm: {
-    marginTop: 10,
-  },
-
-  Row: {
-    flexDirection: "row",
-  },
-
-  Row_column: {
+  Col__middle: {
     flexDirection: "column",
-  },
-
-  Col: {
-    flex: 1,
-  },
-
-  Row_middle: {
     alignItems: "center",
     justifyContent: "center",
   },
@@ -110,18 +113,6 @@ const styles = StyleSheet.create({
 
   TextInput: {
     padding: 4,
-  },
-
-  ElementWrapper: {
-    marginLeft: 30,
-    marginRight: 30,
-  },
-
-  TextInputWrapper: {
-    padding: 0,
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: "#e9e9e9",
   },
 
   TextInputView: {

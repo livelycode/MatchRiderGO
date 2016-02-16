@@ -16,6 +16,8 @@ import React, {
 } from 'react-native';
 
 import {LoginScene} from "./src/Login";
+import {AvailableRidesScene} from "./src/AvailableRides";
+import {AccountScene} from "./src/Account";
 
 class MatchRiderGO extends Component {
   render() {

@@ -1,8 +1,9 @@
-'use strict';
+"use strict";
 import React, {
   StyleSheet,
   Image,
-} from 'react-native';
+} from "react-native";
+
 
 export const MatchRiderLogo = () => (
   <Image
