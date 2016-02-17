@@ -13,7 +13,7 @@ import {Map} from "immutable";
 import {Button} from "./components/Button";
 import {MatchRiderLogo} from "./components/Image";
 import * as actionCreators from "./flux/actionCreators";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 class MRTextInput extends TextInput {
 
@@ -50,7 +50,6 @@ class PasswordInput extends MRTextInput {
 
 
 export class LoginScene extends Component {
-
   constructor (props) {
     super(props);
 
@@ -62,13 +61,28 @@ export class LoginScene extends Component {
       email: "",
     };
   }
-  verifyData () {
-    alert(this.state.email);
-    
+
+  verifyData (loginData) {
+    // Check for a "valid" e-mail address. This means:
+    // * The address contains an `@' and a `.' (after the `@')
+    // * There is at least 1 or more characters before/between `@' and `.'
+    const trimmed_email = this.state.email.trim();
+
+    if(/\S+@\S+\.\S+/.test(trimmed_email)) {
+      return true;
+    }
+
+    return false;
   }
+
   sendData () {
-    this.props.login({email: "foo", password: "bar"})
+    if(this.verifyData()) {
+      this.props.login(
+        {email: this.state.email.trim(),
+         password: this.state.password.trim()})
+    }
   }
+
   render () {
     return (
       <View style={[styles.Col__middle, {backgroundColor: "#ffffff", flex: 1}]}>
@@ -129,4 +143,3 @@ const styles = StyleSheet.create({
     borderColor: "#e9e9e9",
   },
 });
-

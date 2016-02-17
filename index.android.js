@@ -12,7 +12,7 @@ import React, {
 } from "react-native";
 
 import Login from "./src/Login";
-import { AvailableRidesScene } from "./src/AvailableRides";
+import BookedRides from "./src/BookedRides";
 import { AccountScene } from "./src/Account";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -30,7 +30,7 @@ class MatchRiderGO extends Component {
       <Provider store={store}>
         <Navigator
           initialRoute={{name: "Login", index: 0}}
-          renderScene={(route, navigator) => <Login/>}
+          renderScene={(route, navigator) => <BookedRides />}
         />
       </Provider>
     );
