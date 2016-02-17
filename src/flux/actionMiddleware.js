@@ -1,14 +1,14 @@
 import {AlertIOS} from "react-native";
 import * as types from "./actionTypes";
+import {SERVER_ADDRESS} from "./connectionConfig";
 
-const serverAddress = "http://192.168.0.20:3000";
-
-function send (store, data, meta) {
-  fetch(serverAddress + meta.endpoint, {
+function send (store, data, meta, session) {
+  fetch(SERVER_ADDRESS + meta.endpoint, {
     method: meta.method,
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Session': meta.session.id
     },
     body: JSON.stringify(data)
   }).then((response) => {
@@ -24,7 +24,9 @@ function send (store, data, meta) {
     if (parsed.error) {
       alert(parsed.error);
     } else {
-      meta.callback(parsed);
+      if(meta.callback) {
+        meta.callback(parsed);
+      }
       store.dispatch(meta.next(parsed));
     }
   }).catch(err => alert(err))
