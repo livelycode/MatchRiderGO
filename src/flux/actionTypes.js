@@ -7,3 +7,4 @@ export const BOOK_RIDE = "BOOK_RIDE";
 export const CANCEL_RIDE = "CANCEL_RIDE";
 export const UPDATE_USER = "UPDATE_USER";
 export const SET_SESSION = "SET_SESSION";
+export const SET_BOOKED_RIDES = "SET_BOOKED_RIDES";

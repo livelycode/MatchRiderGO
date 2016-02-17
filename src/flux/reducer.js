@@ -1,26 +1,33 @@
 import * as types from "./actionTypes";
 import {AlertIOS} from "react-native";
 import {fromJS} from "immutable";
-import {GENDERS} from "../enums";
+import {GENDERS} from "../enums.js";
 
 const initialState = fromJS({
   sessionId: "",
   user: {
-    gender: GENDERS.FEMALE,
+    gender: GENDERS.FEMALE
+  },
+  rides: {
+    booked: []
   }
 });
 
-function setSession (state, {sessionId, userId}) {
-  const transient = state.updateIn(["sessionId"], () => sessionId);
-  return transient.updateIn(["userId"], () => userId);
+function setUser (state, {session, user}) {
+  const transient = state.updateIn(["session", "id"], () => session.id);
+  return transient.updateIn(["user"], () => fromJS(user));
+}
+
+function setBookedRides (state, {rides}) {
+  return state.updateIn(["rides", "booked"], () => fromJS(rides));
 }
 
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
-  case types.LOGIN:
-    return state;
   case types.SET_SESSION:
-    return setSession(state, action.data);
+    return setUser(state, action.data);
+  case types.SET_BOOKED_RIDES:
+    return setBookedRides(state, action.data);
   default:
     return state;
   }

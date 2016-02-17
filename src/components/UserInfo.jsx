@@ -6,9 +6,9 @@ import React, {
   Text,
 } from "react-native";
 
-export const UserAvatar = () => (
+export const UserAvatar = ({name}) => (
   <View style={{alignItems: "center"}}>
-    <Text style={{textAlign: "center"}}>Name</Text>
+    <Text style={{textAlign: "center"}}>{name}</Text>
     <Image
     style={{width: 64, height: 64}}
     source={require("../../images/ProfileTest.png")}

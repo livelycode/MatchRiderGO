@@ -22,10 +22,11 @@ import {GENDERS} from "./enums";
 
 class RideRow extends View {
   render() {
+    const {name} = this.props;
     return (
       <View style={{paddingLeft: 10, paddingRight: 5, height: 100, flexDirection: "row", borderBottomWidth: 1, borderColor: "#efefef"}}>
         <View style={{flex: 2, alignItems: "center", justifyContent: "center"}}>
-          <UserAvatar />
+          <UserAvatar name={name} />
         </View>
 
         <View style={{flex: 7, paddingLeft: 20, justifyContent: "center"}}>
@@ -47,7 +48,20 @@ class RideRow extends View {
 }
 
 class BookedRidesScene extends Component {
+  componentDidMount () {
+    this.props.bookedRides({userId: this.props.userId}, res => null);
+  }
+  renderRides (rides) {
+    if(rides.length > 0) {
+      const rideRows = rides.map((ride) => {
+        return <RideRow name={ride.driver.name} />;
+      });
+      return rideRows;
+    }
+  }
   render() {
+    const {rides, userId} = this.props;
+    
     return (
       <View style={{flex: 1, flexDirection: "column"}}>
         <MenuBar style={MenuBarStyles.MenuBar__top}>
@@ -75,16 +89,12 @@ class BookedRidesScene extends Component {
             </TouchableHighlight>
           </View>
         </MenuBar>
-
         <ScrollView
           automaticallyAdjustContentInsets={false}
-          style={{flex: 90, borderWidth: 1, borderColor: "red", flexDirection: "column"}}>
-          <RideRow />
-          <RideRow />
-          <RideRow />
-          <RideRow />
-          <RideRow />
-          <RideRow />
+            style={{flex: 90, borderWidth: 1, borderColor: "red", flexDirection: "column"}}>
+          {
+            this.renderRides(rides)
+          }
         </ScrollView>
       </View>
      );
@@ -94,8 +104,9 @@ class BookedRidesScene extends Component {
 export default connect(
   (state) => {
     return {
-      userId: state.getIn(["userId"]),
+      userId: state.getIn(["user", "id"]),
       sessionId: state.getIn(["sessionId"]),
+      rides: state.getIn(["rides", "booked"]).toJS(),
       userGender: state.getIn(["user", "gender"]),
       userPhoto: state.getIn(["user", "photo"]),
     }

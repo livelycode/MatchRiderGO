@@ -2,12 +2,21 @@ import * as types from "./actionTypes";
 import {POST, GET} from "./remoteMethods";
 import * as endpoints from "./endpoints";
 
-export function setSession({sessionId, userId}) {
+function setUser({sessionId, userId}) {
   return {
     type: types.SET_SESSION,
     data: {
       sessionId,
       userId
+    }
+  }
+}
+
+export function setBookedRides ({rides}) {
+  return {
+    type: types.SET_BOOKED_RIDES,
+    data: {
+      rides
     }
   }
 }
@@ -22,7 +31,7 @@ export function login ({email, password}, callback) {
     meta: {
       method: POST,
       endpoint: endpoints.LOGIN,
-      next: setSession,
+      next: setUser,
       callback: callback
     }
   };
@@ -71,7 +80,7 @@ export function availableRides ({start, destination, date}) {
   };
 }
 
-export function bookedRides ({userId}) {
+export function bookedRides ({userId}, callback) {
   return {
     type: types.BOOKED_RIDES,
     data: {
@@ -79,7 +88,9 @@ export function bookedRides ({userId}) {
     },
     meta: {
       method: POST,
-      endpoint: endpoints.BOOKED_RIDES
+      callback: callback,
+      endpoint: endpoints.BOOKED_RIDES,
+      next: setBookedRides
     }
   };
 }

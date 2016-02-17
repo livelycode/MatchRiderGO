@@ -17,7 +17,7 @@ var genders = {
   MALE: "male"
 }
 
-var passenger = {
+var user = {
   name: "Eve",
   email: "eve@matchrider.de",
   photo: "/assets/images/eve.jpg",
@@ -30,9 +30,18 @@ var passenger = {
 };
 
 var session = {
-  sessionId: "ab12",
-  userId: "42"
+  id: "ab12"
 };
+
+function createDriver (name) {
+  return {
+    name: name,
+    photo: "/assets/images/wall-e.jpg",
+    score: 3,
+    phone: "555-5678",
+    description: "I clean up the earth!"
+  }
+}
 
 var driver = {
   name: "Wall-E",
@@ -62,6 +71,17 @@ var destination = {
   photo: "/assets/images/happy-hour.jpg"
 }
 
+function createRide(name) {
+  return {
+    start: location,
+    destination: destination,
+    driver: createDriver(name),
+    date: new Date(2016, 15, 2),
+    price: [2, 40],
+    distance: 20.1,
+    car: car
+}
+}
 
 var ride = {
   start: location,
@@ -90,9 +110,9 @@ app.post("/login", function (req, res) {
   console.log(req.body.email);
   var errorResponse;
   var reqBody = req.body;
-  if (reqBody.email === passenger.email) {
-    if (reqBody.password === passenger.password) {
-      res.send(session);
+  if (reqBody.email === user.email) {
+    if (reqBody.password === user.password) {
+      res.send({session, user});
     } else {
       errorResponse = warning(reqBody, states.INVALID_PASSWORD);
       res.send(errorResponse);
@@ -104,7 +124,7 @@ app.post("/login", function (req, res) {
 });
 
 app.post("/account-details", function (req, res) {
-  res.send(passenger);
+  res.send(user);
 });
 
 app.post("/matchpoints", function (req, res) {
@@ -116,8 +136,8 @@ app.post("/available-rides", function (req, res) {
 });
 
 app.post("/booked-rides", function (req, res) {
-  var booked_rides =[ride, ride, ride, ride, ride, ride];
-  res.send(booked_rides);
+  var booked_rides =["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrott"].map(createRide);
+  res.send({rides: booked_rides});
 });
 
 app.post("/book-ride", function (req, res) {
