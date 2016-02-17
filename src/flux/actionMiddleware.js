@@ -11,10 +11,19 @@ function send (store, data, meta) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
-  }).then((response) =>
-          response.text())
-    .then((responseData) => {
-      store.dispatch(meta.next(JSON.parse(responseData)))})
+  }).then((response) => {
+    if (response.ok) {
+      return response.text();
+    } else {
+      // TODO: handle erros better
+      alert("Network error");
+      return null;
+    }
+  }).then((responseData) => {
+    const parsed = JSON.parse(responseData);
+    meta.callback(parsed);
+    store.dispatch(meta.next(parsed));
+  }).catch(err => alert(err))
     .done();
 }
 
