@@ -21,8 +21,7 @@ import * as actionCreators from "./src/flux/actionCreators";
 import actionMiddleware from "./src/flux/actionMiddleware";
 import { connect } from "react-redux";
 
-const createStoreWithMiddleware = applyMiddleware(actionMiddleware)(createStore);
-const store = createStoreWithMiddleware(reducer, initialState);
+let store = createStore(reducer, initialState, applyMiddleware(actionMiddleware));
 
 class MatchRiderGO extends Component {
   render() {
