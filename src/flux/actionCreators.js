@@ -12,7 +12,7 @@ export function setSession({sessionId, userId}) {
   }
 }
 
-export function login ({email, password}) {
+export function login ({email, password}, callback) {
   return {
     type: types.LOGIN,
     data: {
@@ -22,7 +22,8 @@ export function login ({email, password}) {
     meta: {
       method: POST,
       endpoint: endpoints.LOGIN,
-      next: setSession
+      next: setSession,
+      callback: callback
     }
   };
 }
