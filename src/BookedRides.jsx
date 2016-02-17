@@ -18,24 +18,26 @@ import {RideLocations} from "./components/RideInfo";
 import * as actionCreators from "./flux/actionCreators";
 import { connect } from "react-redux";
 
+import {GENDERS} from "./enums";
+
 class RideRow extends View {
   render() {
     return (
       <View style={{paddingLeft: 10, paddingRight: 5, height: 100, flexDirection: "row", borderBottomWidth: 1, borderColor: "#efefef"}}>
-        <View style={{flex: 20, alignItems: "center", justifyContent: "center"}}>
+        <View style={{flex: 2, alignItems: "center", justifyContent: "center"}}>
           <UserAvatar />
         </View>
 
-        <View style={{flex: 70, paddingLeft: 20, justifyContent: "center"}}>
+        <View style={{flex: 7, paddingLeft: 20, justifyContent: "center"}}>
           <Text style={{marginBottom: 5}}>Datum</Text>
           <RideLocations start="Heidelberg" destination="Mannheim" />
         </View>
 
-        <View style={{flex: 10, alignItems: "center", justifyContent: "center"}}>
-          <TouchableHighlight onPress={null}>
+        <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+          <TouchableHighlight style={{alignSelf: "flex-end", flex: 1, justifyContent: "center"}} onPress={null}>
             <Image
-            style={{width: 16, height: 32}}
-            source={require("../images/RightArrow.png")}
+            style={null}
+            source={require("../images/BookedRides-RideDetails.png")}
             />
           </TouchableHighlight>
         </View>
@@ -51,20 +53,26 @@ class BookedRidesScene extends Component {
         <MenuBar style={MenuBarStyles.MenuBar__top}>
           <View style={{flex: 1}}>
             <Image
-              style={{width: 48, height: 48, alignSelf: "center"}}
-              source={require("../images/1.png")}
+              style={{width: 36, height: 36, alignSelf: "center"}}
+              source={  this.props.userPhoto
+                      ? this.props.userPhoto
+                      : (  this.props.userGender == GENDERS.FEMALE
+                         ? require("../images/UserAccount-PhotoFemale.png")
+                         : require("../images/1.png"))}
             />
           </View>
 
           <View style={{flex: 3}}>
-            <Text style={{fontSize: 20, textAlign: "center"}}>Gebuchte Farten</Text>
+            <Text style={{fontSize: 17, textAlign: "center"}}>Gebuchte Farten</Text>
           </View>
 
           <View style={{flex: 1}}>
-            <Image
-              style={{width: 48, height: 48, alignSelf: "center"}}
-              source={require("../images/23.png")}
-            />
+            <TouchableHighlight>
+              <Image
+               style={{width: 44, height: 44, alignSelf: "center"}}
+               source={require("../images/BookedRides-AddRide@3x.png")}
+              />
+            </TouchableHighlight>
           </View>
         </MenuBar>
 
@@ -87,7 +95,9 @@ export default connect(
   (state) => {
     return {
       userId: state.getIn(["userId"]),
-      sessionId: state.getIn(["sessionId"])
+      sessionId: state.getIn(["sessionId"]),
+      userGender: state.getIn(["user", "gender"]),
+      userPhoto: state.getIn(["user", "photo"]),
     }
   },
   actionCreators
