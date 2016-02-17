@@ -1,10 +1,13 @@
 import * as types from "./actionTypes";
 import {AlertIOS} from "react-native";
-import {Map} from "immutable";
+import {fromJS} from "immutable";
+import {GENDERS} from "../enums";
 
-const initialState = Map({
+const initialState = fromJS({
   sessionId: "",
-  userId: ""
+  user: {
+    gender: GENDERS.FEMALE,
+  }
 });
 
 function setSession (state, {sessionId, userId}) {
