@@ -21,8 +21,12 @@ function send (store, data, meta) {
     }
   }).then((responseData) => {
     const parsed = JSON.parse(responseData);
-    meta.callback(parsed);
-    store.dispatch(meta.next(parsed));
+    if (parsed.error) {
+      alert(parsed.error);
+    } else {
+      meta.callback(parsed);
+      store.dispatch(meta.next(parsed));
+    }
   }).catch(err => alert(err))
     .done();
 }

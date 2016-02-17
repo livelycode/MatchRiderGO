@@ -16,13 +16,13 @@ import { AvailableRidesScene } from "./src/AvailableRides";
 import { AccountScene } from "./src/Account";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-import reducer from "./src/flux/reducer";
+import reducer, {initialState} from "./src/flux/reducer";
 import * as actionCreators from "./src/flux/actionCreators";
 import actionMiddleware from "./src/flux/actionMiddleware";
 import { connect } from "react-redux";
 
 const createStoreWithMiddleware = applyMiddleware(actionMiddleware)(createStore);
-const store = createStoreWithMiddleware(reducer);
+const store = createStoreWithMiddleware(reducer, initialState);
 
 class MatchRiderGO extends Component {
   render() {

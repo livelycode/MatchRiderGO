@@ -4,10 +4,19 @@ var bodyParser = require("body-parser");
 
 // --- TEST DATA ---
 var states = {
-  FAILURE: 0,
-  SUCCESS: 1,
-  DATABASE_ERROR: 2
+  FAILURE: "FAILURE",
+  SUCCESS: "SUCCESS",
+  DATABASE_ERROR: "DATABASE_ERROR",
+  INVALID_USER: "INVALID_USER",
+  INVALID_PASSWORD: "INVALID_PASSWORD",
+  INVALID_SESSION: "INVALID_SESSION"
+};
+
+var genders = {
+  FEMALE : "female",
+  MALE: "male"
 }
+
 var passenger = {
   name: "Eve",
   email: "eve@matchrider.de",
@@ -15,7 +24,9 @@ var passenger = {
   description: "I search for lifeforms!",
   phone: "555-1234",
   facebookId: "4321",
-  id: "42"
+  id: "42",
+  gender: genders.FEMALE,
+  password: "12345"
 };
 
 var session = {
@@ -62,14 +73,34 @@ var ride = {
   car: car
 }
 
+function warning (request, errorState) {
+  return {
+    request: request,
+    error: errorState
+  }
+}
+
+
 // --- ROUTES ---
 
 app.use(bodyParser.json());
 app.use("/assets", express.static(__dirname + "/assets"));
   
 app.post("/login", function (req, res) {
-  console.log(req.body);
-  res.send(session);
+  console.log(req.body.email);
+  var errorResponse;
+  var reqBody = req.body;
+  if (reqBody.email === passenger.email) {
+    if (reqBody.password === passenger.password) {
+      res.send(session);
+    } else {
+      errorResponse = warning(reqBody, states.INVALID_PASSWORD);
+      res.send(errorResponse);
+    }
+  } else {
+    errorResponse = warning(reqBody, states.INVALID_USER);
+    res.send(errorResponse);
+  }
 });
 
 app.post("/account-details", function (req, res) {
@@ -85,7 +116,8 @@ app.post("/available-rides", function (req, res) {
 });
 
 app.post("/booked-rides", function (req, res) {
-  res.send([ride]);
+  var booked_rides =[ride, ride, ride, ride, ride, ride];
+  res.send(booked_rides);
 });
 
 app.post("/book-ride", function (req, res) {
