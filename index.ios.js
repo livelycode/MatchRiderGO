@@ -14,7 +14,7 @@ import React, {
 import Login from "./src/Login";
 import { AvailableRidesScene } from "./src/AvailableRides";
 import { AccountScene } from "./src/Account";
-import { Provider } from 'react-redux/native';
+import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from "redux";
 import reducer from "./src/flux/reducer";
 import * as actionCreators from "./src/flux/actionCreators";
@@ -28,11 +28,10 @@ class MatchRiderGO extends Component {
   render() {
     return (
       <Provider store={store}>
-        {() => <Navigator
-              initialRoute={{name: "Login", index: 0}}
-              renderScene={(route, navigator) => <Login/>}
-          />
-        }
+        <Navigator
+            initialRoute={{name: "Login", index: 0}}
+            renderScene={(route, navigator) => <Login/>}
+        />
       </Provider>
     );
   }
