@@ -2,13 +2,12 @@ import {AlertIOS} from "react-native";
 import * as types from "./actionTypes";
 import {SERVER_ADDRESS} from "./connectionConfig";
 
-function send (store, data, meta, session) {
+function send (store, data, meta) {
   fetch(SERVER_ADDRESS + meta.endpoint, {
     method: meta.method,
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Session': meta.session.id
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
   }).then((response) => {
