@@ -27,7 +27,7 @@ export const MenuBarStyles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#eee",
     borderColor: "#d8d8d8",
-    flex: 10,
+    height: 44,
   },
 
   MenuBar__bottom: {
