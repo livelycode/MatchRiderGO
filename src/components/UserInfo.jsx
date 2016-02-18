@@ -6,7 +6,7 @@ import React, {
   Text,
 } from "react-native";
 
-export const UserAvatar = ({name}) => (
+export const UserAvatar = ({name, photo}) => (
   <View style={{alignItems: "center"}}>
     <Text style={{textAlign: "center"}}>{name}</Text>
     <Image

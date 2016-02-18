@@ -23,6 +23,7 @@ import {GENDERS} from "./enums";
 class RideRow extends View {
   render() {
     const {name, date, destination, start} = this.props;
+    const niceDate = new Date(date);
     return (
       <View style={{paddingLeft: 10, paddingRight: 5, height: 100, flexDirection: "row", borderBottomWidth: 1, borderColor: "#efefef"}}>
         <View style={{flex: 2, alignItems: "center", justifyContent: "center"}}>
@@ -30,7 +31,7 @@ class RideRow extends View {
         </View>
 
         <View style={{flex: 7, paddingLeft: 20, justifyContent: "center"}}>
-          <Text style={{marginBottom: 5}}>{date}</Text>
+          <Text style={{marginBottom: 5}}>{niceDate.getHours() + ":" + niceDate.getMinutes()}</Text>
           <RideLocations start={start} destination={destination} />
         </View>
 
