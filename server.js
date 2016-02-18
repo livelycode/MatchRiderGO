@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
+var serverState = require("./testData.json");
 
 // --- TEST DATA ---
 var states = {
@@ -12,87 +13,6 @@ var states = {
   INVALID_SESSION: "INVALID_SESSION"
 };
 
-var genders = {
-  FEMALE : "female",
-  MALE: "male"
-}
-
-var user = {
-  name: "Eve",
-  email: "eve@matchrider.de",
-  photo: "/assets/images/eve.jpg",
-  description: "I search for lifeforms!",
-  phone: "555-1234",
-  facebookId: "4321",
-  id: "42",
-  gender: genders.FEMALE,
-  password: "12345"
-};
-
-var session = {
-  id: "ab12"
-};
-
-function createDriver (name) {
-  return {
-    name: name,
-    photo: "/assets/images/wall-e.jpg",
-    score: 3,
-    phone: "555-5678",
-    description: "I clean up the earth!"
-  }
-}
-
-var driver = {
-  name: "Wall-E",
-  photo: "/assets/images/wall-e.jpg",
-  score: 3,
-  phone: "555-5678",
-  description: "I clean up the earth!"
-}
-
-var car = {
-  photo: "/assets/images/car.jpg",
-  model: "russian",
-  color: "some"
-}
-
-var location = {
-  lat: 49.406517,
-  long: 8.672457,
-  name: "Dezernat 16",
-  photo: "/assets/images/dezernat.jpg"
-}
-
-var destination = {
-  lat: 49.503738,
-  long: 8.462728,
-  name: "Happy Hour",
-  photo: "/assets/images/happy-hour.jpg"
-}
-
-function createRide(name) {
-  return {
-    start: location,
-    destination: destination,
-    driver: createDriver(name),
-    date: new Date(2016, 15, 2),
-    price: [2, 40],
-    distance: 20.1,
-    car: car
-}
-}
-
-var ride = {
-  start: location,
-  destination: destination,
-  driver: driver,
-  date: new Date(2016, 15, 2),
-  price: [2, 40],
-  distance: 20.1,
-  car: car
-}
-
 function warning (request, errorState) {
   return {
     request: request,
@@ -101,26 +21,69 @@ function warning (request, errorState) {
 }
 
 
+function getBookedRides () {
+  var ride1 = serverState.rides["51"];
+  var ride2 = serverState.rides["52"];
+  var ride3 = serverState.rides["53"];
+
+  ride1.driver = serverState.drivers[ride1.driver];
+  ride2.driver = serverState.drivers[ride2.driver];
+  ride3.driver = serverState.drivers[ride3.driver];
+  
+  ride1.car = serverState.cars[ride1.car];
+  ride2.car = serverState.cars[ride2.car];
+  ride3.car = serverState.cars[ride3.car];
+
+  ride1.start = serverState.matchpoints[ride1.start];
+  ride2.start = serverState.matchpoints[ride2.start];
+  ride3.start = serverState.matchpoints[ride3.start];
+
+  
+  ride1.destination = serverState.matchpoints[ride1.destination];
+  ride2.destination = serverState.matchpoints[ride2.destination];
+  ride3.destination = serverState.matchpoints[ride3.destination];
+
+  return [ride1, ride2, ride3];
+}                         
+
+function checkSession (userId, sessionId) {
+  return sessionId === serverState.users[userId].session.id;
+}
+
 // --- ROUTES ---
 
 app.use(bodyParser.json());
 app.use("/assets", express.static(__dirname + "/assets"));
   
 app.post("/login", function (req, res) {
-  console.log(req.body.email);
-  var errorResponse;
-  var reqBody = req.body;
-  if (reqBody.email === user.email) {
-    if (reqBody.password === user.password) {
-      res.send({session, user});
+  var testUser = serverState.user["11"];
+  if (req.body.email === testUser.email) {
+    if (req.body.password === testUser.password) {
+      res.send({session: testUser.session.id, user: testUser});
     } else {
-      errorResponse = warning(reqBody, states.INVALID_PASSWORD);
-      res.send(errorResponse);
+      res.send(warning(req.body, states.INVALID_PASSWORD));
     }
   } else {
-    errorResponse = warning(reqBody, states.INVALID_USER);
-    res.send(errorResponse);
+    res.send(warning(req.body, states.INVALID_USER));
   }
+});
+
+app.post("/booked-rides", function (req, res) {
+  var testUser = serverState.users["11"];
+
+  if (checkSession(req.body.userId, req.headers.session)) {
+    if (req.body.userId === testUser.id) {
+      res.send({rides: getBookedRides()});
+    } else {
+      res.send(warning(req.body, states.INVALID_USER));
+    }  
+  } else {
+    res.send(warning(req.body, states.INVALID_SESSION));
+  }
+});
+
+app.post("/update-user", function (req, res) {
+  res.send(states.SUCCESS);
 });
 
 app.post("/account-details", function (req, res) {
@@ -135,11 +98,6 @@ app.post("/available-rides", function (req, res) {
   res.send([ride]);
 });
 
-app.post("/booked-rides", function (req, res) {
-  var booked_rides =["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrott"].map(createRide);
-  res.send({rides: booked_rides});
-});
-
 app.post("/book-ride", function (req, res) {
   res.send(states.SUCCESS);
 });
@@ -148,9 +106,10 @@ app.post("/cancel-ride", function (req, res) {
   res.send(states.SUCCESS);
 });
 
-app.post("/update-user", function (req, res) {
+app.get("/reset", function (req, res) {
+  serverState = require("./testData.json");
   res.send(states.SUCCESS);
-});
+})
 
 app.listen(3000, function () {
   console.log("Server listening on port 3000!");

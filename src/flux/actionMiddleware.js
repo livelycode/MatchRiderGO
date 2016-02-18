@@ -7,7 +7,8 @@ function send (store, data, meta) {
     method: meta.method,
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Session': meta.session.id
     },
     body: JSON.stringify(data)
   }).then((response) => {

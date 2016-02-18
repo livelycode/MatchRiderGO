@@ -4,9 +4,12 @@ import {fromJS} from "immutable";
 import {GENDERS} from "../enums.js";
 
 const initialState = fromJS({
-  sessionId: "",
+  session: {
+    id: "ab12"
+  },
   user: {
-    gender: GENDERS.FEMALE
+    gender: GENDERS.FEMALE,
+    id: "42"
   },
   rides: {
     booked: []

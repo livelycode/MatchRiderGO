@@ -37,7 +37,22 @@ export function login ({email, password}, callback) {
   };
 }
 
-export function accountDetails ({userId}) {
+export function bookedRides ({userId}, session) {
+  return {
+    type: types.BOOKED_RIDES,
+    data: {
+      userId
+    },
+    meta: {
+      method: POST,
+      endpoint: endpoints.BOOKED_RIDES,
+      next: setBookedRides,
+      session
+    }
+  };
+}
+
+export function accountDetails ({userId}, session) {
   return {
     type: types.ACCOUNT_DETAILS,
     data: {
@@ -45,12 +60,13 @@ export function accountDetails ({userId}) {
     },
     meta: {
       method: POST,
-      endpoint: endpoints.ACCOUNT_DETAILS
+      endpoint: endpoints.ACCOUNT_DETAILS,
+      session
     }
   };
 }
 
-export function matchPoints ({long, lat, radius}) {
+export function matchPoints ({long, lat, radius}, session) {
   return {
     type: types.MATCHPOINTS,
     data: {
@@ -65,7 +81,7 @@ export function matchPoints ({long, lat, radius}) {
   };
 }
 
-export function availableRides ({start, destination, date}) {
+export function availableRides ({start, destination, date}, session) {
   return {
     type: types.AVAILABLE_RIDES,
     data: {
@@ -76,21 +92,6 @@ export function availableRides ({start, destination, date}) {
     meta: {
       method: POST,
       endpoint: endpoints.AVAILABLE_RIDES
-    }
-  };
-}
-
-export function bookedRides ({userId}, callback) {
-  return {
-    type: types.BOOKED_RIDES,
-    data: {
-      userId
-    },
-    meta: {
-      method: POST,
-      callback: callback,
-      endpoint: endpoints.BOOKED_RIDES,
-      next: setBookedRides
     }
   };
 }
