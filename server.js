@@ -21,7 +21,7 @@ function warning (request, errorState) {
 }
 
 
-function getBookedRides () {
+function resolveBookedRides () {
   var ride1 = serverState.rides["51"];
   var ride2 = serverState.rides["52"];
   var ride3 = serverState.rides["53"];
@@ -70,10 +70,11 @@ app.post("/login", function (req, res) {
 
 app.post("/booked-rides", function (req, res) {
   var testUser = serverState.users["11"];
+  var rides = serverState.rides;
 
   if (checkSession(req.body.userId, req.headers.session)) {
     if (req.body.userId === testUser.id) {
-      res.send({rides: getBookedRides()});
+      res.send({rides: [rides["51"], rides["52"], rides["53"]]});
     } else {
       res.send(warning(req.body, states.INVALID_USER));
     }  
@@ -112,5 +113,6 @@ app.get("/reset", function (req, res) {
 })
 
 app.listen(3000, function () {
+  resolveBookedRides();
   console.log("Server listening on port 3000!");
 });

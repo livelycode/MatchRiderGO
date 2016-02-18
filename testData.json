@@ -15,6 +15,22 @@
             {
                 "id": "ab12"
             }
+        },
+        "12":
+        {
+            "name": "Joseph",
+            "email": "joseph@livelycode.com",
+            "photo": "/assets/images/eve.jpg",
+            "description": "yeah!",
+            "phone": "555-3456",
+            "facebookId": "5432",
+            "id": "12",
+            "gender": "male",
+            "password": "98765",
+            "session":
+            {
+                "id": "cd34"
+            }
         }
     },
     "drivers":
@@ -25,8 +41,18 @@
             "name": "Adam",
             "email": "adam@livelycode.com",
             "photo": "/assets/images/wall-e.jpg",
-            "score": "3",
+            "score": 3,
             "phone": "555-5678",
+            "description": "I am Adam!"
+        },
+        "22":
+        {
+            "id": "22",
+            "name": "Maria",
+            "email": "maria@livelycode.com",
+            "photo": "/assets/images/wall-e.jpg",
+            "score": 5,
+            "phone": "555-6789",
             "description": "Live is good"
         }
     },
@@ -77,7 +103,7 @@
             "id": "52",
             "start": "41",
             "destination": "42",
-            "driver": "21",
+            "driver": "22",
             "car": "31",
             "distance": 20.1,
             "date": "2016-02-15T18:25:43-05:00",
