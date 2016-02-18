@@ -9,7 +9,7 @@ const initialState = fromJS({
   },
   user: {
     gender: GENDERS.FEMALE,
-    id: "42"
+    id: "11"
   },
   rides: {
     booked: []
