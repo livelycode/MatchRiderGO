@@ -22,7 +22,7 @@ import {GENDERS} from "./enums";
 
 class RideRow extends View {
   render() {
-    const {name} = this.props;
+    const {name, date, destination, start} = this.props;
     return (
       <View style={{paddingLeft: 10, paddingRight: 5, height: 100, flexDirection: "row", borderBottomWidth: 1, borderColor: "#efefef"}}>
         <View style={{flex: 2, alignItems: "center", justifyContent: "center"}}>
@@ -30,8 +30,8 @@ class RideRow extends View {
         </View>
 
         <View style={{flex: 7, paddingLeft: 20, justifyContent: "center"}}>
-          <Text style={{marginBottom: 5}}>Datum</Text>
-          <RideLocations start="Heidelberg" destination="Mannheim" />
+          <Text style={{marginBottom: 5}}>{date}</Text>
+          <RideLocations start={start} destination={destination} />
         </View>
 
         <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
@@ -49,19 +49,24 @@ class RideRow extends View {
 
 class BookedRidesScene extends Component {
   componentDidMount () {
-    this.props.bookedRides({userId: this.props.userId}, res => null);
+    this.props.bookedRides({userId: this.props.userId}, this.props.session);
   }
   renderRides (rides) {
     if(rides.length > 0) {
       const rideRows = rides.map((ride) => {
-        return <RideRow name={ride.driver.name} />;
+        return <RideRow name={ride.driver.name}
+                        date={ride.date}
+                        start={ride.start.name}
+                        destination={ride.destination.name} />;
       });
       return rideRows;
+    } else {
+      return null;
     }
   }
   render() {
     const {rides, userId} = this.props;
-    
+
     return (
       <View style={{flex: 1, flexDirection: "column"}}>
         <MenuBar style={MenuBarStyles.MenuBar__top}>
@@ -105,7 +110,7 @@ export default connect(
   (state) => {
     return {
       userId: state.getIn(["user", "id"]),
-      sessionId: state.getIn(["sessionId"]),
+      session: state.getIn(["session"]).toJS(),
       rides: state.getIn(["rides", "booked"]).toJS(),
       userGender: state.getIn(["user", "gender"]),
       userPhoto: state.getIn(["user", "photo"]),
