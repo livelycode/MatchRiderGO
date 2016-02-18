@@ -83,6 +83,14 @@
             "longitude": "8.462728",
             "name": "Happy Hour",
             "photo": "/assets/images/happy-hour.jpg"
+        },
+        "43":
+        {
+            "id": "43",
+            "latitude": "49.422497",
+            "longitude": "8.753858",
+            "name": "Ziegelhausen Mitte",
+            "photo": "/assets/images/ziegelhausen.jpg"
         }
     },
     "rides":
@@ -102,7 +110,7 @@
         {
             "id": "52",
             "start": "41",
-            "destination": "42",
+            "destination": "43",
             "driver": "22",
             "car": "31",
             "distance": 20.1,
