@@ -22,12 +22,12 @@ import {GENDERS} from "./enums";
 
 class RideRow extends View {
   render() {
-    const {name, date, destination, start} = this.props;
+    const {photo, name, date, destination, start} = this.props;
     const niceDate = new Date(date);
     return (
       <View style={{paddingLeft: 10, paddingRight: 5, height: 100, flexDirection: "row", borderBottomWidth: 1, borderColor: "#efefef"}}>
         <View style={{flex: 2, alignItems: "center", justifyContent: "center"}}>
-          <UserAvatar name={name} />
+          <UserAvatar name={name} photo={photo} />
         </View>
 
         <View style={{flex: 7, paddingLeft: 20, justifyContent: "center"}}>
@@ -56,6 +56,7 @@ class BookedRidesScene extends Component {
     if(rides.length > 0) {
       const rideRows = rides.map((ride) => {
         return <RideRow name={ride.driver.name}
+                        photo={ride.driver.photo}
                         date={ride.date}
                         start={ride.start.name}
                         destination={ride.destination.name} />;
