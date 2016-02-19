@@ -15,7 +15,7 @@ import React, {
 
 import NavigationBar from 'react-native-navbar';
 
-import { AccountScene } from "./Account";
+import {AccountScene} from "./Account";
 import {UserAvatar} from "./components/UserInfo";
 import {MenuBar, MenuBarStyles} from "./components/Menu";
 import {RideLocations} from "./components/RideInfo";
@@ -78,9 +78,9 @@ class BookedRidesView extends Component {
       <TouchableHighlight style={{marginTop: -12}}>
         <Image
         style={{width: 44, height: 44}}
-        source={  this.props.userPhoto
+        source={this.props.userPhoto
                 ? this.props.userPhoto
-                : (  this.props.userGender == GENDERS.FEMALE
+                : (this.props.userGender == GENDERS.FEMALE
                    ? require("../images/UserAccount-PhotoFemale.png")
                    : require("../images/1.png"))}
         />
@@ -99,6 +99,8 @@ class BookedRidesView extends Component {
     return (
       <View style={{flex: 1, flexDirection: "column"}}>
         <NavigationBar
+          showAnimation={"none"}
+          hideAnimation={"none"}
           title={
             <Text style={{color: "#ffffff"}}>
               Gebuchte Fahrten
@@ -115,11 +117,11 @@ class BookedRidesView extends Component {
 
               <Image
                 style={{width: 44, height: 44}}
-                source={  this.props.userPhoto
+                source={this.props.userPhoto
                         ? this.props.userPhoto
-                        : (  this.props.userGender == GENDERS.FEMALE
-                          ? require("../images/UserAccount-PhotoFemale.png")
-                          : require("../images/1.png"))}/>
+                        : (this.props.userGender == GENDERS.FEMALE
+                           ? require("../images/UserAccount-PhotoFemale.png")
+                           : require("../images/1.png"))}/>
             </TouchableHighlight>
           }
         />

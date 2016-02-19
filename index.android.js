@@ -14,7 +14,7 @@ import React, {
 } from "react-native";
 
 import Login from "./src/Login";
-import {BookedRidesNavigationBar, BookedRidesScene} from "./src/BookedRides";
+import {BookedRidesScene} from "./src/BookedRides";
 import { AccountScene } from "./src/Account";
 
 
@@ -43,12 +43,13 @@ function renderScene(route, navigator) {
 class MatchRiderGO extends Component {
   render() {
     const initialRoute = {
-      component: BookedRidesScene
+      component: Login
     };
 
     return (
       <Provider store={store}>
         <Navigator
+          configureScene={() => Navigator.SceneConfigs.FloatFromBottomAndroid}
           initialRoute={initialRoute}
           renderScene={renderScene}
         />

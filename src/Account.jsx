@@ -20,12 +20,11 @@ export class AccountScene extends Component {
   render() {
     const leftButtonConf =
       <TouchableHighlight
-        handler={() => this.props.navigator.pop()}>
+        onPress={() => this.props.navigator.pop()}>
         <Text style={{color: "#ffffff"}}>
-        Zurück
+          Zurück
         </Text>
       </TouchableHighlight>
-
 
     const rightButtonConf =
       <TouchableHighlight>
@@ -37,7 +36,7 @@ export class AccountScene extends Component {
     return (
       <View style={{flex: 1, flexDirection: "column"}}>
         <NavigationBar
-          title={{ title: "Account", }}
+          title={{ title: "Account" }}
           tintColor="#3479B1"
           statusBar={{hidden: true}}
           rightButton={rightButtonConf}
