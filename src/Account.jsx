@@ -13,23 +13,36 @@ import React, {
 import {UserAvatar} from "./components/UserInfo";
 import {MenuBar, MenuBarStyles} from "./components/Menu";
 
+import NavigationBar from 'react-native-navbar';
+
 export class AccountScene extends Component {
+
   render() {
+    const leftButtonConf =
+      <TouchableHighlight
+        handler={() => this.props.navigator.pop()}>
+        <Text style={{color: "#ffffff"}}>
+        Zurück
+        </Text>
+      </TouchableHighlight>
+
+
+    const rightButtonConf =
+      <TouchableHighlight>
+        <Text style={{color: "#ffffff"}}>
+          Ändern
+        </Text>
+      </TouchableHighlight>
+
     return (
       <View style={{flex: 1, flexDirection: "column"}}>
-        <MenuBar style={MenuBarStyles.MenuBar__top}>
-          <View style={{flex: 1}}>
-            <Text style={{textAlign: "center"}}>Zurück</Text>
-          </View>
-
-          <View style={{flex: 3}}>
-            <Text style={{fontSize: 20, textAlign: "center"}}>Account</Text>
-          </View>
-
-          <View style={{flex: 1}}>
-            <Text style={{textAlign: "center"}}>Ändern</Text>
-          </View>
-        </MenuBar>
+        <NavigationBar
+          title={{ title: "Account", }}
+          tintColor="#3479B1"
+          statusBar={{hidden: true}}
+          rightButton={rightButtonConf}
+          leftButton={leftButtonConf}
+        />
 
         <ScrollView
           automaticallyAdjustContentInsets={false}

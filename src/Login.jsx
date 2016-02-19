@@ -9,11 +9,16 @@ import React, {
   TextInput,
   TouchableHighlight
 } from "react-native";
+
 import {Map} from "immutable";
 import {Button} from "./components/Button";
 import {MatchRiderLogo} from "./components/Image";
 import * as actionCreators from "./flux/actionCreators";
 import { connect } from "react-redux";
+
+import { BookedRidesScene } from "./BookedRides";
+
+
 
 class MRTextInput extends TextInput {
 
@@ -76,6 +81,7 @@ export class LoginScene extends Component {
   }
 
   sendData () {
+    this.props.navigator.push({component: BookedRidesScene});
     if(this.verifyData()) {
       this.props.login(
         {email: this.state.email.trim(),

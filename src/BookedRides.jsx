@@ -9,8 +9,13 @@ import React, {
   Image,
   TouchableHighlight,
   PixelRatio,
+  TouchableOpacity,
+  Navigator
 } from "react-native";
 
+import NavigationBar from 'react-native-navbar';
+
+import { AccountScene } from "./Account";
 import {UserAvatar} from "./components/UserInfo";
 import {MenuBar, MenuBarStyles} from "./components/Menu";
 import {RideLocations} from "./components/RideInfo";
@@ -44,11 +49,12 @@ class RideRow extends View {
           </TouchableHighlight>
         </View>
       </View>
-      );
+    );
   }
 }
 
-class BookedRidesScene extends Component {
+
+class BookedRidesView extends Component {
   componentDidMount () {
     this.props.bookedRides({userId: this.props.userId}, this.props.session);
   }
@@ -66,36 +72,58 @@ class BookedRidesScene extends Component {
       return null;
     }
   }
-  render() {
+
+  render () {
+    const leftButtonConf =
+      <TouchableHighlight style={{marginTop: -12}}>
+        <Image
+        style={{width: 44, height: 44}}
+        source={  this.props.userPhoto
+                ? this.props.userPhoto
+                : (  this.props.userGender == GENDERS.FEMALE
+                   ? require("../images/UserAccount-PhotoFemale.png")
+                   : require("../images/1.png"))}
+        />
+      </TouchableHighlight>
+
+    const rightButtonConf =
+      <TouchableHighlight style={{marginTop: -12}}>
+        <Image
+          style={{width: 44, height: 44, alignSelf: "center"}}
+          source={require("../images/BookedRides-AddRide@3x.png")}
+        />
+      </TouchableHighlight>
+
     const {rides, userId} = this.props;
 
     return (
       <View style={{flex: 1, flexDirection: "column"}}>
-        <MenuBar style={MenuBarStyles.MenuBar__top}>
-          <View style={{flex: 1}}>
-            <Image
-              style={{width: 36, height: 36, alignSelf: "center"}}
-              source={  this.props.userPhoto
-                      ? this.props.userPhoto
-                      : (  this.props.userGender == GENDERS.FEMALE
-                         ? require("../images/UserAccount-PhotoFemale.png")
-                         : require("../images/1.png"))}
-            />
-          </View>
+        <NavigationBar
+          title={
+            <Text style={{color: "#ffffff"}}>
+              Gebuchte Fahrten
+            </Text>
+          }
+          tintColor="#2062A3"
+          statusBar={{hidden: true}}
+          rightButton={rightButtonConf}
+          leftButton={
+            <TouchableHighlight style={{marginTop: -12}}
+              onPress={() => this.props.navigator.push({
+                component: AccountScene,
+              })}>
 
-          <View style={{flex: 3}}>
-            <Text style={{fontSize: 17, textAlign: "center"}}>Gebuchte Farten</Text>
-          </View>
-
-          <View style={{flex: 1}}>
-            <TouchableHighlight>
               <Image
-               style={{width: 44, height: 44, alignSelf: "center"}}
-               source={require("../images/BookedRides-AddRide@3x.png")}
-              />
+                style={{width: 44, height: 44}}
+                source={  this.props.userPhoto
+                        ? this.props.userPhoto
+                        : (  this.props.userGender == GENDERS.FEMALE
+                          ? require("../images/UserAccount-PhotoFemale.png")
+                          : require("../images/1.png"))}/>
             </TouchableHighlight>
-          </View>
-        </MenuBar>
+          }
+        />
+
         <ScrollView
           automaticallyAdjustContentInsets={false}
             style={{flex: 90, borderWidth: 1, borderColor: "red", flexDirection: "column"}}>
@@ -108,7 +136,7 @@ class BookedRidesScene extends Component {
   }
 }
 
-export default connect(
+export const BookedRidesScene = connect(
   (state) => {
     return {
       userId: state.getIn(["user", "id"]),
@@ -119,11 +147,4 @@ export default connect(
     }
   },
   actionCreators
-)(BookedRidesScene);
-
-
-const styles = StyleSheet.create({
-  text_center: {
-    textAlign: "center",
-  },
-});
+)(BookedRidesView);
