@@ -49,7 +49,7 @@ class MatchRiderGO extends Component {
     return (
       <Provider store={store}>
         <Navigator
-          configureScene={() => Navigator.SceneConfigs.FloatFromBottomAndroid}
+          configureScene={() => Navigator.SceneConfigs.HorizontalSwipeJump}
           initialRoute={initialRoute}
           renderScene={renderScene}
         />
