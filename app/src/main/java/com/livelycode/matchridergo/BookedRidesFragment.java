@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 
 /**
@@ -28,7 +32,28 @@ public class BookedRidesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_booked_rides, container, false);
+
+        //return inflater.inflate(R.layout.fragment_booked_rides, container, false);
+
+        View v = inflater.inflate(R.layout.fragment_booked_rides, container, false);
+        ScrollView sv = (ScrollView) v.findViewById(R.id.scrollView);
+
+
+        LinearLayout ll = new LinearLayout(getActivity());
+        ll.setOrientation(LinearLayout.VERTICAL);
+
+        // Add text
+        for(int i = 1; i < 50; i++) {
+
+            TextView tv = new TextView(getActivity());
+            tv.setText("my text");
+            ll.addView(tv);
+        }
+
+        // Add the LinearLayout element to the ScrollView
+        sv.addView(ll);
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
