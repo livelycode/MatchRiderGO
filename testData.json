@@ -11,6 +11,7 @@
             "id": "11",
             "gender": "female",
             "password": "12345",
+            "bookedRides": ["52"],
             "session":
             {
                 "id": "ab12"
@@ -27,6 +28,7 @@
             "id": "12",
             "gender": "male",
             "password": "98765",
+            "bookedRides": ["51", "53"],
             "session":
             {
                 "id": "cd34"

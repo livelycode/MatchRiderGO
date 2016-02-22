@@ -10,7 +10,8 @@ var states = {
   DATABASE_ERROR: "DATABASE_ERROR",
   INVALID_USER: "INVALID_USER",
   INVALID_PASSWORD: "INVALID_PASSWORD",
-  INVALID_SESSION: "INVALID_SESSION"
+  INVALID_SESSION: "INVALID_SESSION",
+  RESET_SUCCES: "RESET_SUCCESS"
 };
 
 function warning (request, errorState) {
@@ -20,6 +21,13 @@ function warning (request, errorState) {
   }
 }
 
+function getUserBookedRides (userId) {
+  var userRides = serverState.users[userId].bookedRides;
+  userRides.map(function (ride) {
+    return serverState.rides[ride];
+  })
+  
+}
 
 function resolveBookedRides () {
   var ride1 = serverState.rides["51"];
@@ -56,7 +64,8 @@ app.use(bodyParser.json());
 app.use("/assets", express.static(__dirname + "/assets"));
   
 app.post("/login", function (req, res) {
-  var testUser = serverState.user["11"];
+  console.log(req);
+  var testUser = serverState.users["11"];
   if (req.body.email === testUser.email) {
     if (req.body.password === testUser.password) {
       res.send({session: testUser.session.id, user: testUser});
@@ -109,7 +118,8 @@ app.post("/cancel-ride", function (req, res) {
 
 app.get("/reset", function (req, res) {
   serverState = require("./testData.json");
-  res.send(states.SUCCESS);
+  resolveBookedRides();
+  res.send(states.RESET_SUCCESS);
 })
 
 app.listen(3000, function () {
