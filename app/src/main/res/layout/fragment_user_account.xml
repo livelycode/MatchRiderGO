@@ -1,54 +1,68 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="co.lunation.mydrawer.UserAccount">
+    tools:context="com.livelycode.matchridergo.UserAccount">
 
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Name"
-            android:drawableBottom="@mipmap/ic_launcher"
-            android:id="@+id/user_account_name"
-            android:gravity="center" />
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
-            android:layout_weight="5"
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="16dp">
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Mobilfunknummer"
-                android:id="@+id/user_account_mobile"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:paddingTop="16dp"
-                android:text="Beschreibung"
-                android:id="@+id/user_account_description" />
+                android:text="Name"
+                android:drawableBottom="@mipmap/ic_launcher"
+                android:id="@+id/user_account_name"
+                android:gravity="center" />
+
+            <LinearLayout
+                android:layout_weight="5"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Mobilfunknummer"
+                    android:id="@+id/user_account_mobile"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:paddingTop="16dp"
+                    android:text="Beschreibung"
+                    android:id="@+id/user_account_description" />
+            </LinearLayout>
         </LinearLayout>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Bezahlen"
+            android:id="@+id/user_send_coupon" />
     </LinearLayout>
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bezahlen"
-        android:id="@+id/user_send_coupon" />
+        android:text="Ausloggen"
+        android:id="@+id/user_account_logout"
+        style="@style/ButtonAppTheme" />
 </LinearLayout>
