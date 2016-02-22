@@ -92,16 +92,22 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         if (id == R.id.nav_booked_rides) {
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, new BookedRidesFragment());
             fragmentTransaction.commit();
+
+            fab.show();
         } else if (id == R.id.nav_user_account) {
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, new UserAccountFragment());
             fragmentTransaction.commit();
+
+            fab.hide();
         } else if (id == R.id.nav_send_coupon) {
 
         }
