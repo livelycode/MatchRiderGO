@@ -6,6 +6,10 @@
             android:id="@+id/nav_booked_rides"
             android:icon="@drawable/ic_menu_camera"
             android:title="Gebuchte Fahrten" />
+        <item
+            android:id="@+id/nav_user_account"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Mein Konto" />
         <!--<item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
@@ -22,10 +26,6 @@
 
     <item android:title="Soziales">
         <menu>
-            <item
-                android:id="@+id/nav_user_account"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Mein Konto" />
             <item
                 android:id="@+id/nav_send_coupon"
                 android:icon="@drawable/ic_menu_send"
