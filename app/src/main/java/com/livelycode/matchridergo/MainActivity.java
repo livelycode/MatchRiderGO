@@ -25,11 +25,7 @@ import android.widget.FrameLayout;
 
 import java.util.Stack;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
-    private FragmentManager fragmentManager;
-    private Stack<Fragment> fragmentStack;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     static public Stack<Activity> activityStack;
 
@@ -103,7 +99,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onAttachFragment(Fragment fragment) {
-        fragmentStack.push(fragment);
+
     }
 
 
@@ -167,10 +163,15 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         switch (item.getItemId()) {
             case R.id.nav_booked_rides:
-                startActivity(new Intent(this, BookedRidesActivity.class));
+                intent = new Intent(this, BookedRidesActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
                 return true;
             case R.id.nav_user_account:
-                startActivity(new Intent(this, UserAccountActivity.class));
+                //startActivity(new Intent(this, UserAccountActivity.class));
+                intent = new Intent(this, UserAccountActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
                 return true;
         }
         return false;
