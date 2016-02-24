@@ -1,103 +1,106 @@
-<com.livelycode.matchridergo.RideRowView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_weight="2">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Name"
+            android:drawableBottom="@mipmap/ic_launcher"
+            android:id="@+id/ride_row_driver_name"
+            android:gravity="center" />
+
+        <RatingBar
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ride_row_driver_score"
+            android:numStars="5"
+            android:rating="4"
+            android:padding="4dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_weight="6">
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Name"
-                android:drawableBottom="@mipmap/ic_launcher"
-                android:id="@+id/ride_row_driver_name"
-                android:gravity="center" />
-
-            <RatingBar
-                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ride_row_driver_score"
-                android:numStars="5"
-                android:rating="4"
-                android:padding="4dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="6"
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp" >
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Datum"
+                android:id="@+id/ride_row_date" />
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:text="Start"
+                    android:background="@drawable/location_start_badge"
+                    style="@style/LocationBadge" />
+
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Datum"
-                    android:id="@+id/ride_row_date" />
+                    android:text="Heidelberg"
+                    android:id="@+id/ride_row_start_location"
+                    android:layout_weight="3"
+                    android:layout_marginLeft="8dp" />
+            </LinearLayout>
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" >
+
+                <TextView
+                    android:text="Ziel"
+                    android:background="@drawable/location_destination_badge"
+                    style="@style/LocationBadge" />
+
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" >
-
-                    <TextView
-                        android:text="Start"
-                        android:background="@drawable/location_start_badge"
-                        style="@style/LocationBadge" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Heidelberg"
-                        android:id="@+id/ride_row_start_location"
-                        android:layout_weight="3"
-                        android:layout_marginLeft="8dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp" >
-
-                    <TextView
-                        android:text="Ziel"
-                        android:background="@drawable/location_destination_badge"
-                        style="@style/LocationBadge" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Mannheim"
-                        android:id="@+id/ride_row_destination_location"
-                        android:layout_weight="3"
-                        android:layout_marginLeft="8dp" />
-                </LinearLayout>
-
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Mannheim"
+                    android:id="@+id/ride_row_destination_location"
+                    android:layout_weight="3"
+                    android:layout_marginLeft="8dp" />
             </LinearLayout>
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/ride_row_more_details"
-            android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_edit"
-            android:layout_gravity="center" />
-    </com.livelycode.matchridergo.RideRowView>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/ride_row_more_details"
+        android:layout_weight="1"
+        android:src="@android:drawable/ic_menu_edit"
+        android:layout_gravity="center" />
+
+</LinearLayout>
