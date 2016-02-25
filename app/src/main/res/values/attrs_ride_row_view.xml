@@ -1,8 +1,7 @@
 <resources>
     <declare-styleable name="RideRowView">
-        <attr name="exampleString" format="string" />
-        <attr name="exampleDimension" format="dimension" />
-        <attr name="exampleColor" format="color" />
-        <attr name="exampleDrawable" format="color|reference" />
+        <attr name="driverName" format="string" />
+        <attr name="startLocation" format="string" />
+        <attr name="destinationLocation" format="string" />
     </declare-styleable>
 </resources>

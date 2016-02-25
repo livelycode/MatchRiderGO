@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/com.livelycode.matchridergo"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
@@ -16,6 +17,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Name"
+            custom:driverName="Name"
             android:drawableBottom="@mipmap/ic_launcher"
             android:id="@+id/ride_row_driver_name"
             android:gravity="center" />
