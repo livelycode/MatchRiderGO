@@ -1,24 +1,54 @@
 package com.livelycode.matchridergo;
 
+import com.livelycode.matchridergo.MatchRiderObjects.*;
+
+import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-/**
- * Created by Leye on 23.02.16.
- */
+import java.util.ArrayList;
+
+
+
+class MySimpleArrayAdapter extends ArrayAdapter<String> {
+    private final Context context;
+    private final String[] values;
+
+    public MySimpleArrayAdapter(Context context, String[] values) {
+        super(context, -1, values);
+        this.context = context;
+        this.values = values;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView = inflater.inflate(R.layout.sample_ride_row_view, parent, false);
+        TextView textView = (TextView) rowView.findViewById(R.id.ride_row_driver_name);
+        TextView textView2 = (TextView) rowView.findViewById(R.id.ride_row_start_location);
+        textView.setText(values[position]);
+
+        return rowView;
+    }
+}
+
+
 public class BookedRidesActivity extends MainActivity {
+    Ride ride = new Ride();
+
     @Override
     protected void onResume() {
         super.onResume();
         navigationView.getMenu().getItem(0).setChecked(true);
     }
-
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +59,31 @@ public class BookedRidesActivity extends MainActivity {
         activityStack.push(this);
         Log.i("System.out", String.valueOf(activityStack.size()));
 
-        ScrollView sv = (ScrollView) findViewById(R.id.scrollView);
+        ListView ll = (ListView) findViewById(R.id.booked_rides_list);
 
+        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
+                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
+                "Android", "iPhone", "WindowsMobile" };
 
-        LinearLayout ll = new LinearLayout(this);
-        ll.setOrientation(LinearLayout.VERTICAL);
-
-        // Add text
-        for(int i = 1; i < 50; i++) {
-
-            TextView tv = new TextView(this);
-            tv.setText("my text");
-            ll.addView(tv);
+        final ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < values.length; ++i) {
+            list.add(values[i]);
         }
 
-        // Add the LinearLayout element to the ScrollView
-        sv.addView(ll);
+        final MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, values);
+
+
+        ll.setAdapter(adapter);
+        ll.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                final String item = (String) parent.getItemAtPosition(position);
+                final long item_id = (long) parent.getItemIdAtPosition(position);
+                Log.i("System.out", "you pressed " + item);
+                Log.i("System.out", "you pressed " + String.valueOf(item_id));
+            }
+        });
     }
 }
