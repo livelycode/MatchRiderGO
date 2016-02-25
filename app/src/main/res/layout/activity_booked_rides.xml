@@ -3,16 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView">
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/booked_rides_list">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/booked_rides_list">
 
-        </ListView>
-    </ScrollView>
+    </ListView>
 </LinearLayout>
