@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context="com.livelycode.matchridergo.UserAccount">
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -57,7 +56,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Bezahlen"
-            android:id="@+id/user_send_coupon" />
+            android:id="@+id/user_payment" />
     </LinearLayout>
 
     <Button
