@@ -11,7 +11,7 @@ final public class Ride {
     private final double duration = 20.5;
     private final double price = 3.5;
 
-    Ride () {
+    public Ride () {
     }
 }
 
