@@ -3,6 +3,7 @@ package com.livelycode.matchridergo;
 import com.livelycode.matchridergo.MatchRiderObjects.*;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -78,7 +79,10 @@ public class BookedRidesActivity extends MainActivity {
                 //final String item = (String) parent.getItemAtPosition(position);
                 final long item_id = (long) parent.getItemIdAtPosition(position);
                 //Log.i("System.out", "you pressed " + item);
+
                 Log.i("System.out", "you pressed " + String.valueOf(item_id));
+                Intent rideDetails= new Intent(parent.getContext(), RideDetailsActivity.class);
+                startActivity(rideDetails);
             }
         });
     }
