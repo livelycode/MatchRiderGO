@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
 
-import com.livelycode.matchridergo.DataModel.MatchRiderException;
+import com.livelycode.matchridergo.datamodel.MatchRiderException;
 
 import org.json.JSONException;
 
