@@ -1,4 +1,4 @@
-package com.livelycode.matchridergo.MatchRiderObjects;
+package com.livelycode.matchridergo.DataModel;
 
 final public class Driver {
     private static int numberOfDrivers;
