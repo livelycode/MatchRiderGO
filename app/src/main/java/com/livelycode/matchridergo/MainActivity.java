@@ -1,8 +1,6 @@
 package com.livelycode.matchridergo;
 
 import android.animation.Animator;
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,11 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-
-import com.livelycode.matchridergo.MatchRiderObjects.User;
-
-import java.util.Stack;
-
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
