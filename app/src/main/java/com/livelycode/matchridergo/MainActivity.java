@@ -1,19 +1,15 @@
 package com.livelycode.matchridergo;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,11 +19,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.livelycode.matchridergo.MatchRiderObjects.User;
+
 import java.util.Stack;
+
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    static public Stack<Activity> activityStack;
+    private static final int NAVDRAWER_LAUNCH_DELAY = 250;
+    private static final int CONTENT_FADEIN_DURATION = 250;
+    private static final int CONTENT_FADEOUT_DURATION = 150;
+    private boolean mAnimating;
+    private Handler mHandler = new Handler();
 
     public DrawerLayout drawer;
     public FloatingActionButton fab;
@@ -36,44 +40,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public ActionBarDrawerToggle toggle;
     protected FrameLayout content;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        /*setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        fragmentStack = new Stack();
-
-        /*fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, new BookedRidesFragment());
-        fragmentTransaction.commit();*/
-
     }
 
     protected void onCreateDrawer(final int layoutResID) {
+        // The sequence of calls is important here.
+        // At first, inflate the XML of `activity_main'.
         setContentView(R.layout.activity_main);
+        // Now a toolbar can be set up, because `activity_main.xml' includes `app_bar_main.xml'
+        // which provides `android.support.v7.widget.Toolbar' (this is the default
+        // `Navigation Drawer Activity' pattern, not mine).
         setupActionBar();
 
+        // `content' now serves as the place to put the layout of other activities into,
+        // specified by `layoutResID'.
         content = (FrameLayout) findViewById(R.id.fragment_container);
         getLayoutInflater().inflate(layoutResID, content, true);
 
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
@@ -95,12 +81,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
-
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -135,31 +115,63 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        toggle.syncState();
+
+        content.setAlpha(0);
+        content.animate().alpha(1).setDuration(CONTENT_FADEIN_DURATION).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) { mAnimating = true; }
+
+            @Override
+            public void onAnimationEnd(Animator animation) { mAnimating = false; }
+
+            @Override
+            public void onAnimationCancel(Animator animation) { mAnimating = false; }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) { }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!mAnimating) content.setAlpha(1);
+    }
+
+    public void goToIntent(final Intent intent) {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        }, NAVDRAWER_LAUNCH_DELAY);
+
+        content.animate().alpha(0).setDuration(CONTENT_FADEOUT_DURATION);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         Intent intent;
-        drawer.closeDrawer(GravityCompat.START);
+
         switch (item.getItemId()) {
             case R.id.nav_booked_rides:
                 intent = new Intent(this, BookedRidesActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
+                goToIntent(intent);
                 return true;
+
             case R.id.nav_user_account:
-                //startActivity(new Intent(this, UserAccountActivity.class));
                 intent = new Intent(this, UserAccountActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
+                goToIntent(intent);
                 return true;
         }
         return false;
-
-        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //drawer.closeDrawer(GravityCompat.START);
-        //return true;
     }
 }
