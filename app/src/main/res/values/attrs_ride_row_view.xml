@@ -1,7 +1,11 @@
 <resources>
     <declare-styleable name="RideRowView">
         <attr name="driverName" format="string" />
+        <attr name="carName" format="string" />
+        <attr name="date" format="string" />
         <attr name="startLocation" format="string" />
         <attr name="destinationLocation" format="string" />
+        <attr name="duration" format="float" />
+        <attr name="price" format="float" />
     </declare-styleable>
 </resources>
