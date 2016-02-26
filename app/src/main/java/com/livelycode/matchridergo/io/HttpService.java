@@ -7,7 +7,6 @@ import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -37,6 +36,7 @@ public class HttpService extends IntentService{
     }
 
 
+
     @Override
     protected void onHandleIntent(Intent intent) {
         Log.d(TAG, "Http Service started");
@@ -52,12 +52,10 @@ public class HttpService extends IntentService{
 
         try {
             JSONObject requestData = new JSONObject();
-            requestData.put("email", intent.getStringExtra("email"));
-            requestData.put("password", intent.getStringExtra("password"));
+            requestData.put("data", intent.getStringExtra("data"));
             String result = httpPost(endpoint, requestData.toString());
-
             if (null != result) {
-                bundle.putString("result", result);
+                bundle.putString("response", result);
                 receiver.send(STATUS_FINISHED, bundle);
             }
         } catch (Exception e) {

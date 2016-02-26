@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
 
+import com.livelycode.matchridergo.DataModel.MatchRiderException;
+
+import org.json.JSONException;
+
 /**
  * Created by konny on 26/02/16.
  */
@@ -20,13 +24,19 @@ public class HttpResultReceiver extends ResultReceiver {
     }
 
     public interface Receiver {
-        void onReceiveResult(int resultCode, Bundle resultData);
+        void onReceiveResult(int resultCode, Bundle resultData) throws MatchRiderException, JSONException;
     }
 
     @Override
     protected void onReceiveResult(int resultCode, Bundle resultData) {
         if (mReceiver != null) {
-            mReceiver.onReceiveResult(resultCode, resultData);
+            try {
+                mReceiver.onReceiveResult(resultCode, resultData);
+            } catch (MatchRiderException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
