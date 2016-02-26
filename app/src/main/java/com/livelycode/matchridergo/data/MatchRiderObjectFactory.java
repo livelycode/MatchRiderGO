@@ -8,6 +8,7 @@ import org.json.JSONObject;
  */
 public class MatchRiderObjectFactory {
    private final static String USER = "USER";
+   private final static String SESSION = "SESSION";
 
 
    public static IMatchRiderObject fromJSON(JSONObject jsonObject) throws JSONException, MatchRiderException {
@@ -15,6 +16,8 @@ public class MatchRiderObjectFactory {
          switch (jsonObject.getString("type")) {
             case USER:
                return new User(jsonObject.getJSONObject("data"));
+            case SESSION:
+               return new Session(jsonObject.getJSONObject("data"));
             default:
                return null;
          }
