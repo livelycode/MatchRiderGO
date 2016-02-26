@@ -2,21 +2,22 @@ package com.livelycode.matchridergo;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-/**
- * TODO: document your custom view class.
- */
+import java.util.GregorianCalendar;
+
+
 public class RideRowView extends LinearLayout {
+    private String mDriverName;
+    private String mCarName;
+    private GregorianCalendar mDate;
+    private String mStartLocation;
+    private String mDestinationLocation;
+    private float mDuration;
+    private float mPrice;
+
+
     public RideRowView(Context context) {
         this(context, null);
     }
@@ -28,12 +29,9 @@ public class RideRowView extends LinearLayout {
     public RideRowView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs);
         if(!isInEditMode()) {
-
-            //LayoutInflater inflater = (LayoutInflater) context
-            //        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             inflate(getContext(), R.layout.sample_ride_row_view, this);
 
-            //this.addView(inflater.inflate(R.layout.sample_ride_row_view, null));
+
         }
     }
 }

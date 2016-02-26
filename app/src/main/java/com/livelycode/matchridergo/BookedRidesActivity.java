@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -17,24 +16,31 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-
-class MySimpleArrayAdapter extends ArrayAdapter<String> {
+class MySimpleArrayAdapter extends ArrayAdapter<Ride> {
     private final Context context;
-    private final String[] values;
+    private final Ride[] rides;
 
-    public MySimpleArrayAdapter(Context context, String[] values) {
+    public MySimpleArrayAdapter(Context context, Ride[] values) {
         super(context, -1, values);
         this.context = context;
-        this.values = values;
+        this.rides = values;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.sample_ride_row_view, parent, false);
+        /**
+         * TODO: Instead of creating a RideRowView class with accompanying XML files, it might be
+         * possible to only use an XML file and set each TextView individually.
+         * I.e. DO NOT create a whole `RideRowView' object. Just use an XML layout file.
+         */
+        //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //View rowView = inflater.inflate(R.layout.sample_ride_row_view, parent, false);
+
+        RideRowView rowView = new RideRowView(parent.getContext());
         TextView textView = (TextView) rowView.findViewById(R.id.ride_row_driver_name);
         TextView textView2 = (TextView) rowView.findViewById(R.id.ride_row_start_location);
-        textView.setText(values[position]);
+        textView.setText(this.rides[position].driver.name);
+        textView2.setText(this.rides[position].startLocation);
 
         return rowView;
     }
@@ -42,7 +48,6 @@ class MySimpleArrayAdapter extends ArrayAdapter<String> {
 
 
 public class BookedRidesActivity extends MainActivity {
-    Ride ride = new Ride();
 
     @Override
     protected void onResume() {
@@ -56,32 +61,23 @@ public class BookedRidesActivity extends MainActivity {
         super.onCreateDrawer(R.layout.activity_booked_rides);
         navigationView.getMenu().getItem(0).setChecked(true);
 
-        activityStack.push(this);
-        Log.i("System.out", String.valueOf(activityStack.size()));
 
         ListView ll = (ListView) findViewById(R.id.booked_rides_list);
 
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile" };
-
-        final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < values.length; ++i) {
-            list.add(values[i]);
+        Ride[] rides = new Ride[20];
+        for(int i=0; i < 20; i++) {
+            rides[i] = new Ride();
         }
 
-        final MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, values);
-
+        final MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, rides);
 
         ll.setAdapter(adapter);
         ll.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                final String item = (String) parent.getItemAtPosition(position);
+                //final String item = (String) parent.getItemAtPosition(position);
                 final long item_id = (long) parent.getItemIdAtPosition(position);
-                Log.i("System.out", "you pressed " + item);
+                //Log.i("System.out", "you pressed " + item);
                 Log.i("System.out", "you pressed " + String.valueOf(item_id));
             }
         });
