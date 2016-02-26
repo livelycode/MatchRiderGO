@@ -14,7 +14,8 @@
             "bookedRides": ["52"],
             "session":
             {
-                "id": "ab12"
+                "id": "ab12",
+                "userId": "11"
             }
         },
         "12":
@@ -31,7 +32,8 @@
             "bookedRides": ["51", "53"],
             "session":
             {
-                "id": "cd34"
+                "id": "cd34",
+                "userId": "12"
             }
         }
     },

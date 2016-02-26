@@ -67,7 +67,7 @@ app.post("/login", function (req, res) {
   var testUser = serverState.users["11"];
   if (req.body.email === testUser.email) {
     if (req.body.password === testUser.password) {
-      res.send({session: testUser.session.id, user: testUser});
+      res.send({type: "SESSION", data: testUser.session});
     } else {
       res.send(warning(states.INVALID_PASSWORD));
     }
