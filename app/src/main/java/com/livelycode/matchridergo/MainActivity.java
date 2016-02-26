@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        activityStack = new Stack<Activity>();
         /*setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -67,10 +66,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     protected void onCreateDrawer(final int layoutResID) {
         setContentView(R.layout.activity_main);
+        setupActionBar();
+
         content = (FrameLayout) findViewById(R.id.fragment_container);
         getLayoutInflater().inflate(layoutResID, content, true);
 
-        setupActionBar();
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
     private void setupActionBar() {
@@ -107,28 +106,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        Log.i("System.out", "test");
-        Log.i("System.out", String.valueOf(activityStack.size()));
-        Log.i("System.out", activityStack.lastElement().getLocalClassName());
-
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            /*if (fragmentStack.size() > 1) {
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-                Fragment currentFragment = fragmentStack.pop();
-                Fragment previousFragment = fragmentStack.lastElement();
-                ft.replace(R.id.fragment_container, previousFragment);
-                ft.commit();
-            }*/
             super.onBackPressed();
         }
-
-        /*if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }*/
     }
 
     @Override

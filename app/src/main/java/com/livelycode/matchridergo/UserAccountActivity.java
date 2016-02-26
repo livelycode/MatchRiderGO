@@ -14,15 +14,13 @@ public class UserAccountActivity extends MainActivity {
         navigationView.getMenu().getItem(1).setChecked(true);
     }
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onCreateDrawer(R.layout.activity_user_account);
+        getSupportActionBar().setTitle("Mein Konto");
         navigationView.getMenu().getItem(1).setChecked(true);
         fab.hide();
-
-        activityStack.push(this);
-        Log.i("System.out", String.valueOf(activityStack.size()));
     }
 
     @Override
@@ -30,5 +28,4 @@ public class UserAccountActivity extends MainActivity {
         // TODO Auto-generated method stub
         super.onBackPressed();
     }
-
 }
