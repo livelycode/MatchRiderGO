@@ -63,7 +63,7 @@ app.use(bodyParser.json());
 app.use("/assets", express.static(__dirname + "/assets"));
   
 app.post("/login", function (req, res) {
-  console.log(req);
+  console.log(req.body);
   var testUser = serverState.users["11"];
   if (req.body.email === testUser.email) {
     if (req.body.password === testUser.password) {
