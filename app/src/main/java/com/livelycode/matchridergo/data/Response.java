@@ -17,7 +17,12 @@ public class Response {
         } else {
             this.errorMessage = null;
         }
-        this.data = MatchRiderObjectFactory.fromJSON(responseOj);
+
+        if(responseOj.has("data")) {
+            this.data = MatchRiderObjectFactory.fromJSON(responseOj);
+        } else {
+            this.data = null;
+        }
     }
 
     public Boolean hasError() {

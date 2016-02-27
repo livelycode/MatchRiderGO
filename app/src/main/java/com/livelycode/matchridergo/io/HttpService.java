@@ -26,6 +26,7 @@ public class HttpService extends IntentService{
     private static final String TAG = HttpService.class.getSimpleName();
 
     private static final String SERVER_ADDRESS = "http://46.101.130.96:3000";
+    private static final String LOCAL_ADDRESS = "http://192.168.178.23:3000";
 
     public static final int STATUS_RUNNING = 0;
     public static final int STATUS_FINISHED = 1;
@@ -51,10 +52,9 @@ public class HttpService extends IntentService{
         }
 
         try {
-            JSONObject requestData = new JSONObject();
-            requestData.put("data", intent.getStringExtra("data"));
-            String result = httpPost(endpoint, requestData.toString());
+            String result = httpPost(endpoint, intent.getStringExtra("data"));
             if (null != result) {
+                Log.d(TAG, result);
                 bundle.putString("response", result);
                 receiver.send(STATUS_FINISHED, bundle);
             }

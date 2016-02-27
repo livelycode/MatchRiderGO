@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -28,11 +29,13 @@ import android.widget.Toast;
 
 import com.livelycode.matchridergo.data.MatchRiderException;
 import com.livelycode.matchridergo.data.Response;
+import com.livelycode.matchridergo.data.Session;
 import com.livelycode.matchridergo.data.User;
 import com.livelycode.matchridergo.io.HttpResultReceiver;
 import com.livelycode.matchridergo.io.HttpService;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,18 +106,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        /*HttpResultReceiver receiver = new HttpResultReceiver(new Handler());
+        HttpResultReceiver receiver = new HttpResultReceiver(new Handler());
         receiver.setReceiver(instance);
         Intent httpIntent = new Intent(Intent.ACTION_SYNC, null, instance, HttpService.class);
         httpIntent.putExtra("endpoint", "/login");
+        JSONObject loginData = new JSONObject();
+        try {
+            loginData.put("email", mEmailView.getText().toString());
+            loginData.put("password", mPasswordView.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         httpIntent.putExtra("receiver", receiver);
-        httpIntent.putExtra("email", mEmailView.getText().toString());
-        httpIntent.putExtra("password", mPasswordView.getText().toString());
+        httpIntent.putExtra("data", loginData.toString());
         startService(httpIntent);
-*/
-        Intent bookedRidesIntent = new Intent(instance, BookedRidesActivity.class);
+
+
+
+        /*Intent bookedRidesIntent = new Intent(instance, BookedRidesActivity.class);
         startActivity(bookedRidesIntent);
-        finish();
+        finish();*/
 
         /*if (mAuthTask != null) {
             return;
@@ -269,9 +281,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Toast.makeText(this, response.getErrorMessage(), Toast.LENGTH_LONG).show();
                     break;
                 } else {
-                    User user = (User) response.getData();
-                    assert user != null;
-                    GlobalData.getInstance().setUser(user);
+                    Session session = (Session) response.getData();
+                    assert session != null;
+                    GlobalData.getInstance().setSession(session);
                     Intent bookedRidesIntent = new Intent(instance, BookedRidesActivity.class);
                     startActivity(bookedRidesIntent);
                     finish();
