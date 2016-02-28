@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="ride" type="com.livelycode.matchridergo.data.Ride"/>
+    </data>
+
+    <ScrollView
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -35,7 +40,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Datum"
+                        android:text="@{ride.getDate}"
                         android:id="@+id/textView4" />
 
                     <LinearLayout
@@ -49,7 +54,6 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Start"
-                            android:id="@+id/textView5"
                             android:background="@drawable/location_start_badge"
                             android:paddingLeft="8dp"
                             android:paddingTop="4dp"
@@ -63,7 +67,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Heidelberg"
+                            android:text="@{ride.startLocation}"
                             android:id="@+id/textView6"
                             android:layout_weight="3"
                             android:layout_marginLeft="8dp" />
@@ -80,7 +84,6 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Ziel"
-                            android:id="@+id/textView7"
                             android:background="@drawable/location_destination_badge"
                             android:paddingLeft="8dp"
                             android:paddingTop="4dp"
@@ -94,7 +97,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Mannheim"
+                            android:text="@{ride.destinationLocation}"
                             android:id="@+id/textView8"
                             android:layout_weight="3"
                             android:layout_marginLeft="8dp" />
@@ -144,7 +147,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="11:00"
+                    android:text='@{ride.getHours + ":" + ride.getMinutes}'
                     android:id="@+id/textView10"
                     android:layout_gravity="start"
                     android:layout_weight="1"
@@ -173,7 +176,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="11:22"
+                    android:text='@{ride.getHours + ":" + ride.getMinutes}'
                     android:id="@+id/textView12"
                     android:layout_gravity="left"
                     android:layout_weight="1"
@@ -202,7 +205,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="22 Minuten"
+                    android:text='@{ride.duration + " Minuten"}'
                     android:id="@+id/textView14"
                     android:layout_gravity="start"
                     android:layout_weight="1"
@@ -231,7 +234,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="3,10 €"
+                    android:text='@{ride.price + " €"}'
                     android:id="@+id/textView16"
                     android:layout_gravity="start"
                     android:layout_weight="1"
@@ -260,7 +263,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="18 km"
+                    android:text='@{ride.distance + " km"}'
                     android:id="@+id/textView18"
                     android:layout_gravity="start"
                     android:layout_weight="1"
@@ -287,7 +290,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Alfie"
+                    android:text="@{ride.driver.getName}"
                     android:id="@+id/textView20"
                     android:layout_gravity="center" />
 
@@ -310,7 +313,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="I have one big dream ... well maybe not only one, which I would love to share with everybody!"
+                    android:text="@{ride.driver.getDescription}"
                     android:id="@+id/textView19"
                     android:textStyle="italic" />
 
@@ -343,7 +346,6 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Modell:"
-                    android:id="@+id/textView119"
                     android:layout_weight="1"
                     android:gravity="end"
                     android:layout_marginRight="8dp"
@@ -353,7 +355,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Lada Samara"
+                    android:text="@{ride.car.name}"
                     android:id="@+id/textView110"
                     android:layout_gravity="left"
                     android:layout_weight="1"
@@ -371,7 +373,6 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Kennzeichen:"
-                    android:id="@+id/textView111"
                     android:layout_gravity="right"
                     android:layout_weight="1"
                     android:gravity="right"
@@ -381,7 +382,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="HH AB 123"
+                    android:text="@{ride.car.license}"
                     android:id="@+id/textView112"
                     android:layout_gravity="start"
                     android:layout_weight="1"
@@ -399,7 +400,6 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Autofarbe:"
-                    android:id="@+id/textView113"
                     android:layout_gravity="end"
                     android:layout_weight="1"
                     android:gravity="end"
@@ -410,7 +410,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Grau"
+                    android:text="@{ride.car.color}"
                     android:id="@+id/textView114"
                     android:layout_gravity="start"
                     android:layout_weight="1"
@@ -420,3 +420,4 @@
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
+</layout>
