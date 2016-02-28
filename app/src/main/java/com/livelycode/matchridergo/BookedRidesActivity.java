@@ -11,17 +11,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 
-class MySimpleArrayAdapter extends ArrayAdapter<Ride> {
+class BookedRidesArrayAdapter extends ArrayAdapter<Ride> {
     private final Context context;
     private final Ride[] rides;
 
-    public MySimpleArrayAdapter(Context context, Ride[] values) {
-        super(context, -1, values);
+    public BookedRidesArrayAdapter(Context context, Ride[] rides) {
+        super(context, -1, rides);
         this.context = context;
-        this.rides = values;
+        this.rides = rides;
     }
 
     @Override
@@ -35,10 +36,17 @@ class MySimpleArrayAdapter extends ArrayAdapter<Ride> {
         //View rowView = inflater.inflate(R.layout.sample_ride_row_view, parent, false);
 
         RideRowView rowView = new RideRowView(parent.getContext());
-        TextView textView = (TextView) rowView.findViewById(R.id.ride_row_driver_name);
-        TextView textView2 = (TextView) rowView.findViewById(R.id.ride_row_start_location);
-        textView.setText(this.rides[position].driver.name);
-        textView2.setText(this.rides[position].startLocation);
+        TextView driver_name = (TextView) rowView.findViewById(R.id.ride_row_driver_name);
+        TextView start_location = (TextView) rowView.findViewById(R.id.ride_row_start_location);
+        TextView destination_location = (TextView) rowView.findViewById(R.id.ride_row_destination_location);
+        RatingBar driver_score = (RatingBar) rowView.findViewById(R.id.ride_row_driver_score);
+        TextView ride_date = (TextView) rowView.findViewById(R.id.ride_row_date);
+
+        driver_name.setText(this.rides[position].getDriver().getName());
+        start_location.setText(this.rides[position].getStartLocation());
+        destination_location.setText(this.rides[position].getDestinationLocation());
+        driver_score.setRating((float) this.rides[position].getDriver().getScore());
+        ride_date.setText(this.rides[position].getDate());
 
         return rowView;
     }
@@ -62,23 +70,16 @@ public class BookedRidesActivity extends MainActivity {
 
         ListView ll = (ListView) findViewById(R.id.booked_rides_list);
 
-        Ride[] rides = new Ride[20];
-        for(int i=0; i < 20; i++) {
-            rides[i] = new Ride();
-        }
-
-        final MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, rides);
+        final BookedRidesArrayAdapter adapter = new BookedRidesArrayAdapter(this, GlobalData.getInstance().getRides());
 
         ll.setAdapter(adapter);
         ll.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                //final String item = (String) parent.getItemAtPosition(position);
-                final long item_id = (long) parent.getItemIdAtPosition(position);
-                //Log.i("System.out", "you pressed " + item);
-
-                Log.i("System.out", "you pressed " + String.valueOf(item_id));
-                Intent rideDetails= new Intent(parent.getContext(), RideDetailsActivity.class);
+                final long ride_index = parent.getItemIdAtPosition(position);
+                
+                Intent rideDetails = new Intent(parent.getContext(), RideDetailsActivity.class);
+                rideDetails.putExtra("ride_index", ride_index);
                 startActivity(rideDetails);
             }
         });
