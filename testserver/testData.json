@@ -2,7 +2,8 @@
     "users": {
         "11":
         {
-            "name": "Eve",
+            "firstName": "Eve",
+            "lastName": "Livelycode",
             "email": "eve@livelycode.com",
             "photo": "/assets/images/eve.jpg",
             "description": "I like riding!",
@@ -20,7 +21,8 @@
         },
         "12":
         {
-            "name": "Joseph",
+            "firstName": "Joseph",
+            "lastName": "Livelycode",
             "email": "joseph@livelycode.com",
             "photo": "/assets/images/eve.jpg",
             "description": "yeah!",
@@ -42,7 +44,8 @@
         "21":
         {
             "id": "21",
-            "name": "Adam",
+            "firstName": "Adam",
+            "lastName": "Livelycode"
             "email": "adam@livelycode.com",
             "photo": "/assets/images/wall-e.jpg",
             "score": 3,
@@ -52,7 +55,8 @@
         "22":
         {
             "id": "22",
-            "name": "Maria",
+            "firstName": "Maria",
+            "lastName": "Livelycode"
             "email": "maria@livelycode.com",
             "photo": "/assets/images/eve.jpg",
             "score": 5,
@@ -72,7 +76,7 @@
         "32":
         {
             "id": "32",
-            "photo": "/assets/images/carr2.jpg",
+            "photo": "/assets/images/car2.jpg",
             "model": "soviet",
             "color": "red"
         }

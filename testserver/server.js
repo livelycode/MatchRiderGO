@@ -22,10 +22,9 @@ function warning (errorState) {
 
 function getUserBookedRides (userId) {
   var userRides = serverState.users[userId].bookedRides;
-  userRides.map(function (ride) {
+  return userRides.map(function (ride) {
     return serverState.rides[ride];
   })
-  
 }
 
 function resolveBookedRides () {
@@ -49,8 +48,6 @@ function resolveBookedRides () {
   ride1.destination = serverState.matchpoints[ride1.destination];
   ride2.destination = serverState.matchpoints[ride2.destination];
   ride3.destination = serverState.matchpoints[ride3.destination];
-
-  return [ride1, ride2, ride3];
 }                         
 
 function checkSession (userId, sessionId) {
@@ -78,8 +75,10 @@ app.post("/login", function (req, res) {
 
 app.post("/booked-rides", function (req, res) {
   var testUser = serverState.users["11"];
-  var rides = serverState.rides;
-
+  var rides = getUserBookedRides(req.body.userId);
+  
+  res.send({type: "BOOKED_RIDES", data: rides});
+  /*
   if (checkSession(req.body.userId, req.headers.session)) {
     if (req.body.userId === testUser.id) {
       res.send({rides: [rides["51"], rides["52"], rides["53"]]});
@@ -88,7 +87,7 @@ app.post("/booked-rides", function (req, res) {
     }  
   } else {
     res.send(warning(states.INVALID_SESSION));
-  }
+  } */
 });
 
 app.post("/update-user", function (req, res) {
