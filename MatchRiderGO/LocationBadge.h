@@ -10,4 +10,6 @@
 
 @interface LocationBadge : UILabel
 
+@property UIEdgeInsets edgeInsets;
+
 @end
