@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E98F08E21C84B4C7003622F6 /* LocationBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = E98F08E11C84B4C7003622F6 /* LocationBadge.m */; };
+		E99A0CC21C848DBC0010A106 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99A0CC11C848DBC0010A106 /* LoginViewController.m */; };
+		E99A0CC51C8496090010A106 /* RideRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99A0CC41C8496090010A106 /* RideRowView.m */; };
+		E99A0CC71C8496280010A106 /* RideRowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99A0CC61C8496280010A106 /* RideRowView.xib */; };
+		E9C253EC1C847C25009CDE6E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C253EB1C847C25009CDE6E /* main.m */; };
+		E9C253EF1C847C25009CDE6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C253EE1C847C25009CDE6E /* AppDelegate.m */; };
+		E9C253F21C847C25009CDE6E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C253F11C847C25009CDE6E /* FirstViewController.m */; };
+		E9C253F51C847C25009CDE6E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C253F41C847C25009CDE6E /* SecondViewController.m */; };
+		E9C253F81C847C25009CDE6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9C253F61C847C25009CDE6E /* Main.storyboard */; };
+		E9C253FA1C847C25009CDE6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C253F91C847C25009CDE6E /* Images.xcassets */; };
+		E9C253FD1C847C25009CDE6E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C253FB1C847C25009CDE6E /* LaunchScreen.xib */; };
+		E9C254091C847C25009CDE6E /* MatchRiderGOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C254081C847C25009CDE6E /* MatchRiderGOTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E9C254031C847C25009CDE6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9C253DE1C847C25009CDE6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9C253E51C847C25009CDE6E;
+			remoteInfo = MatchRiderGO;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E98F08E01C84B4C7003622F6 /* LocationBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationBadge.h; sourceTree = "<group>"; };
+		E98F08E11C84B4C7003622F6 /* LocationBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationBadge.m; sourceTree = "<group>"; };
+		E99A0CC01C848DBC0010A106 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E99A0CC11C848DBC0010A106 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E99A0CC31C8496090010A106 /* RideRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideRowView.h; sourceTree = "<group>"; };
+		E99A0CC41C8496090010A106 /* RideRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideRowView.m; sourceTree = "<group>"; };
+		E99A0CC61C8496280010A106 /* RideRowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideRowView.xib; sourceTree = "<group>"; };
+		E9C253E61C847C25009CDE6E /* MatchRiderGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchRiderGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9C253EA1C847C25009CDE6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9C253EB1C847C25009CDE6E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E9C253ED1C847C25009CDE6E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E9C253EE1C847C25009CDE6E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E9C253F01C847C25009CDE6E /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		E9C253F11C847C25009CDE6E /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		E9C253F31C847C25009CDE6E /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		E9C253F41C847C25009CDE6E /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		E9C253F71C847C25009CDE6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E9C253F91C847C25009CDE6E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E9C253FC1C847C25009CDE6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E9C254021C847C25009CDE6E /* MatchRiderGOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MatchRiderGOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9C254071C847C25009CDE6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9C254081C847C25009CDE6E /* MatchRiderGOTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchRiderGOTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E9C253E31C847C25009CDE6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9C253FF1C847C25009CDE6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E98F08DF1C84B4A2003622F6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E98F08E01C84B4C7003622F6 /* LocationBadge.h */,
+				E98F08E11C84B4C7003622F6 /* LocationBadge.m */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		E9C253DD1C847C25009CDE6E = {
+			isa = PBXGroup;
+			children = (
+				E9C253E81C847C25009CDE6E /* MatchRiderGO */,
+				E9C254051C847C25009CDE6E /* MatchRiderGOTests */,
+				E9C253E71C847C25009CDE6E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E9C253E71C847C25009CDE6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E9C253E61C847C25009CDE6E /* MatchRiderGO.app */,
+				E9C254021C847C25009CDE6E /* MatchRiderGOTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E9C253E81C847C25009CDE6E /* MatchRiderGO */ = {
+			isa = PBXGroup;
+			children = (
+				E98F08DF1C84B4A2003622F6 /* Components */,
+				E9C253ED1C847C25009CDE6E /* AppDelegate.h */,
+				E9C253EE1C847C25009CDE6E /* AppDelegate.m */,
+				E9C253F01C847C25009CDE6E /* FirstViewController.h */,
+				E9C253F11C847C25009CDE6E /* FirstViewController.m */,
+				E9C253F31C847C25009CDE6E /* SecondViewController.h */,
+				E9C253F41C847C25009CDE6E /* SecondViewController.m */,
+				E9C253F61C847C25009CDE6E /* Main.storyboard */,
+				E9C253F91C847C25009CDE6E /* Images.xcassets */,
+				E9C253FB1C847C25009CDE6E /* LaunchScreen.xib */,
+				E9C253E91C847C25009CDE6E /* Supporting Files */,
+				E99A0CC01C848DBC0010A106 /* LoginViewController.h */,
+				E99A0CC11C848DBC0010A106 /* LoginViewController.m */,
+				E99A0CC31C8496090010A106 /* RideRowView.h */,
+				E99A0CC41C8496090010A106 /* RideRowView.m */,
+				E99A0CC61C8496280010A106 /* RideRowView.xib */,
+			);
+			path = MatchRiderGO;
+			sourceTree = "<group>";
+		};
+		E9C253E91C847C25009CDE6E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E9C253EA1C847C25009CDE6E /* Info.plist */,
+				E9C253EB1C847C25009CDE6E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9C254051C847C25009CDE6E /* MatchRiderGOTests */ = {
+			isa = PBXGroup;
+			children = (
+				E9C254081C847C25009CDE6E /* MatchRiderGOTests.m */,
+				E9C254061C847C25009CDE6E /* Supporting Files */,
+			);
+			path = MatchRiderGOTests;
+			sourceTree = "<group>";
+		};
+		E9C254061C847C25009CDE6E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E9C254071C847C25009CDE6E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E9C253E51C847C25009CDE6E /* MatchRiderGO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9C2540C1C847C25009CDE6E /* Build configuration list for PBXNativeTarget "MatchRiderGO" */;
+			buildPhases = (
+				E9C253E21C847C25009CDE6E /* Sources */,
+				E9C253E31C847C25009CDE6E /* Frameworks */,
+				E9C253E41C847C25009CDE6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MatchRiderGO;
+			productName = MatchRiderGO;
+			productReference = E9C253E61C847C25009CDE6E /* MatchRiderGO.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E9C254011C847C25009CDE6E /* MatchRiderGOTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9C2540F1C847C25009CDE6E /* Build configuration list for PBXNativeTarget "MatchRiderGOTests" */;
+			buildPhases = (
+				E9C253FE1C847C25009CDE6E /* Sources */,
+				E9C253FF1C847C25009CDE6E /* Frameworks */,
+				E9C254001C847C25009CDE6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E9C254041C847C25009CDE6E /* PBXTargetDependency */,
+			);
+			name = MatchRiderGOTests;
+			productName = MatchRiderGOTests;
+			productReference = E9C254021C847C25009CDE6E /* MatchRiderGOTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E9C253DE1C847C25009CDE6E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = LivelyCode;
+				TargetAttributes = {
+					E9C253E51C847C25009CDE6E = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					E9C254011C847C25009CDE6E = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = E9C253E51C847C25009CDE6E;
+					};
+				};
+			};
+			buildConfigurationList = E9C253E11C847C25009CDE6E /* Build configuration list for PBXProject "MatchRiderGO" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E9C253DD1C847C25009CDE6E;
+			productRefGroup = E9C253E71C847C25009CDE6E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E9C253E51C847C25009CDE6E /* MatchRiderGO */,
+				E9C254011C847C25009CDE6E /* MatchRiderGOTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E9C253E41C847C25009CDE6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9C253F81C847C25009CDE6E /* Main.storyboard in Resources */,
+				E9C253FD1C847C25009CDE6E /* LaunchScreen.xib in Resources */,
+				E9C253FA1C847C25009CDE6E /* Images.xcassets in Resources */,
+				E99A0CC71C8496280010A106 /* RideRowView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9C254001C847C25009CDE6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E9C253E21C847C25009CDE6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9C253F51C847C25009CDE6E /* SecondViewController.m in Sources */,
+				E9C253EF1C847C25009CDE6E /* AppDelegate.m in Sources */,
+				E9C253F21C847C25009CDE6E /* FirstViewController.m in Sources */,
+				E99A0CC51C8496090010A106 /* RideRowView.m in Sources */,
+				E9C253EC1C847C25009CDE6E /* main.m in Sources */,
+				E98F08E21C84B4C7003622F6 /* LocationBadge.m in Sources */,
+				E99A0CC21C848DBC0010A106 /* LoginViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9C253FE1C847C25009CDE6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9C254091C847C25009CDE6E /* MatchRiderGOTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E9C254041C847C25009CDE6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9C253E51C847C25009CDE6E /* MatchRiderGO */;
+			targetProxy = E9C254031C847C25009CDE6E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E9C253F61C847C25009CDE6E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9C253F71C847C25009CDE6E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E9C253FB1C847C25009CDE6E /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9C253FC1C847C25009CDE6E /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E9C2540A1C847C25009CDE6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E9C2540B1C847C25009CDE6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E9C2540D1C847C25009CDE6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MatchRiderGO/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E9C2540E1C847C25009CDE6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MatchRiderGO/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E9C254101C847C25009CDE6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MatchRiderGOTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MatchRiderGO.app/MatchRiderGO";
+			};
+			name = Debug;
+		};
+		E9C254111C847C25009CDE6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MatchRiderGOTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MatchRiderGO.app/MatchRiderGO";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E9C253E11C847C25009CDE6E /* Build configuration list for PBXProject "MatchRiderGO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9C2540A1C847C25009CDE6E /* Debug */,
+				E9C2540B1C847C25009CDE6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9C2540C1C847C25009CDE6E /* Build configuration list for PBXNativeTarget "MatchRiderGO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9C2540D1C847C25009CDE6E /* Debug */,
+				E9C2540E1C847C25009CDE6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9C2540F1C847C25009CDE6E /* Build configuration list for PBXNativeTarget "MatchRiderGOTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9C254101C847C25009CDE6E /* Debug */,
+				E9C254111C847C25009CDE6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E9C253DE1C847C25009CDE6E /* Project object */;
+}
