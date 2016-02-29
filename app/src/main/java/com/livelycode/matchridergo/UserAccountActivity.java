@@ -20,7 +20,7 @@ public class UserAccountActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onCreateDrawer(R.layout.activity_user_account);
-        getSupportActionBar().setTitle("Mein Konto");
+        getSupportActionBar().setTitle(R.string.user_account_title);
         navigationView.getMenu().getItem(1).setChecked(true);
         fab.hide();
     }
