@@ -1,22 +1,19 @@
 package com.livelycode.matchridergo;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import java.util.GregorianCalendar;
-
+import java.util.Date;
 
 public class RideRowView extends LinearLayout {
     private String mDriverName;
     private String mCarName;
-    private GregorianCalendar mDate;
+    private Date mDate;
     private String mStartLocation;
     private String mDestinationLocation;
     private float mDuration;
     private float mPrice;
-
 
     public RideRowView(Context context) {
         this(context, null);
@@ -30,8 +27,6 @@ public class RideRowView extends LinearLayout {
         super(context, attrs);
         if(!isInEditMode()) {
             inflate(getContext(), R.layout.sample_ride_row_view, this);
-
-
         }
     }
 }
