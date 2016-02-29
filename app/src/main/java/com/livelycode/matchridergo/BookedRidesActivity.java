@@ -32,6 +32,7 @@ class BookedRidesArrayAdapter extends ArrayAdapter<Ride> {
          * possible to only use an XML file and set each TextView individually.
          * I.e. DO NOT create a whole `RideRowView' object. Just use an XML layout file.
          */
+        // Use the following code when implementing the behaviour above:
         //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //View rowView = inflater.inflate(R.layout.sample_ride_row_view, parent, false);
 
@@ -54,30 +55,29 @@ class BookedRidesArrayAdapter extends ArrayAdapter<Ride> {
 
 
 public class BookedRidesActivity extends MainActivity {
-
     @Override
     protected void onResume() {
         super.onResume();
         navigationView.getMenu().getItem(0).setChecked(true);
     }
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onCreateDrawer(R.layout.activity_booked_rides);
         navigationView.getMenu().getItem(0).setChecked(true);
 
-
-        ListView ll = (ListView) findViewById(R.id.booked_rides_list);
-
+        // Create a ListView and fill it with `RideRowView's using BookedRidesArrayAdapter
+        ListView bookedRidesList = (ListView) findViewById(R.id.booked_rides_list);
         final BookedRidesArrayAdapter adapter = new BookedRidesArrayAdapter(this, GlobalData.getInstance().getRides());
 
-        ll.setAdapter(adapter);
-        ll.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        bookedRidesList.setAdapter(adapter);
+        bookedRidesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                // Get the position of the clicked item
                 final long ride_index = parent.getItemIdAtPosition(position);
-                
+
+                // Start RideDetailsActivity and tell it which Ride was pressed
                 Intent rideDetails = new Intent(parent.getContext(), RideDetailsActivity.class);
                 rideDetails.putExtra("ride_index", ride_index);
                 startActivity(rideDetails);
