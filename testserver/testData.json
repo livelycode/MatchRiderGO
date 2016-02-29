@@ -45,7 +45,7 @@
         {
             "id": "21",
             "firstName": "Adam",
-            "lastName": "Livelycode"
+            "lastName": "Livelycode",
             "email": "adam@livelycode.com",
             "photo": "/assets/images/wall-e.jpg",
             "score": 3,
@@ -56,7 +56,7 @@
         {
             "id": "22",
             "firstName": "Maria",
-            "lastName": "Livelycode"
+            "lastName": "Livelycode",
             "email": "maria@livelycode.com",
             "photo": "/assets/images/eve.jpg",
             "score": 5,
@@ -118,7 +118,8 @@
             "driver": "21",
             "car": "31",
             "distance": 20.1,
-            "date": "2016-02-15T18:15:43+01:00",
+            "duration": 22,
+            "date": 1455524100000,
             "price": [2, 40]
         },
         "52":
@@ -128,8 +129,9 @@
             "destination": "43",
             "driver": "22",
             "car": "32",
-            "distance": 20.1,
-            "date": "2016-02-15T18:45:43+01:00",
+            "distance": 20.1
+            "duration": 28,
+            "date": 1455527700000,
             "price": [2, 40]
         },
         "53":
@@ -140,7 +142,8 @@
             "driver": "21",
             "car": "31",
             "distance": 20.1,
-            "date": "2016-02-15T19:15:43+01:00",
+            "duration": 32,
+            "date": 1455533100000,
             "price": [2, 40]
         }
     }
