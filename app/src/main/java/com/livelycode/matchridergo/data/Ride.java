@@ -1,32 +1,38 @@
 package com.livelycode.matchridergo.data;
 
+import android.util.Log;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 final public class Ride implements IMatchRiderObject {
     private Driver driver;
     private Car car;
-    private GregorianCalendar date;
+    private Date date;
     private String startLocation;
     private String destinationLocation;
     private double distance;
-    private double duration;
-    private double price;
+    private int duration;
+    private int[] price = new int[2];
+
+    Calendar cal = Calendar.getInstance();
 
     public Ride(Driver driver,
                 Car car,
-                GregorianCalendar date,
+                Date date,
                 String startLocation,
                 String destinationLocation,
                 double distance,
-                double duration,
-                double price) {
+                int duration,
+                int[] price) {
         this.driver = driver;
         this.car = car;
         this.date = date;
@@ -34,7 +40,10 @@ final public class Ride implements IMatchRiderObject {
         this.destinationLocation = destinationLocation;
         this.distance = distance;
         this.duration = duration;
-        this.price = price;
+        this.price[0] = price[0];
+        this.price[1] = price[1];
+
+        cal.setTime(this.date);
     }
 
     /*public Ride(HashMap<String, Object> rideConfiguration) {
@@ -48,7 +57,7 @@ final public class Ride implements IMatchRiderObject {
         this.price = (double) rideConfiguration.get("price");
     }*/
 
-    /*public Ride(JSONObject json) throws JSONException, MatchRiderException {
+    public Ride(JSONObject json) throws JSONException, MatchRiderException {
         String[] requiredFields = {
                 "driver",
                 "car",
@@ -66,32 +75,35 @@ final public class Ride implements IMatchRiderObject {
             }
         }
 
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'+'z");
+        JSONArray JSONPrice = json.getJSONArray("price");
+        int[] price = new int[] {JSONPrice.getInt(0), JSONPrice.getInt(1)};
 
         new Ride(new Driver(json.getJSONObject("driver")),
                  new Car(json.getJSONObject("car")),
-                 //new GregorianCalendar(j).getString("date"),
+                 new Date(json.getInt("date")),
                  json.getString("startLocation"),
                  json.getString("destinationLocation"),
-                 json.getDouble("duration"),
-                 json.getDouble("price")
+                 json.getDouble("distance"),
+                 json.getInt("duration"),
+                 price
         );
-    }*/
+    }
 
     public Driver getDriver() { return this.driver; }
     public Car getCar() { return this.car; }
 
-    public String getDate() { return new SimpleDateFormat("dd. MMMM").format(this.date.getTime()); }
-    public int getHours() { return this.date.get(GregorianCalendar.HOUR_OF_DAY); }
-    public int getMinutes() { return this.date.get(GregorianCalendar.MINUTE); }
+    public String getDate() { return new SimpleDateFormat("dd. MMMM").format(this.cal.getTimeInMillis()); }
+    public String getDepartureTime() { return new SimpleDateFormat("HH:mm").format(this.cal.getTimeInMillis()); }
+    public String getArrivalTime() { return new SimpleDateFormat("HH:mm").format(this.cal.getTimeInMillis() + this.duration * 60 * 1000L); }
+    public int getHours() { return this.cal.get(Calendar.HOUR); }
+    public int getMinutes() { return this.cal.get(Calendar.MINUTE); }
 
     public String getStartLocation() { return this.startLocation; }
     public String getDestinationLocation() { return this.destinationLocation; }
 
     public double getDistance() { return this.distance; }
     public double getDuration() { return this.duration; }
-    public double getPrice() { return this.price; }
+    public int[] getPrice() { return this.price; }
 
     public String toJSONString() { return null; }
 }
