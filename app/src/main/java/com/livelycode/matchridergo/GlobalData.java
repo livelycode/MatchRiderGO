@@ -6,6 +6,7 @@ import com.livelycode.matchridergo.data.Ride;
 import com.livelycode.matchridergo.data.Session;
 import com.livelycode.matchridergo.data.User;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
@@ -35,9 +36,13 @@ public class GlobalData {
         drivers[1] = new Driver("Gustavo", "gustavo@web.de", "/gustavo.jpg", "Driving is my passion", "+65 312465", "aasd123", 3);
         drivers[2] = new Driver("Franz", "franz@gmx.de", "/franz.jpg", "Benz benz benz", "00564", "asd123", 5);
 
-        rides[0] = new Ride(drivers[0], cars[0], new GregorianCalendar(116, 1, 29, 10, 50, 0), "Heidelberg", "Mannheim", 22, 40, 3.50);
-        rides[1] = new Ride(drivers[1], cars[1], new GregorianCalendar(116, 1, 29, 10, 50, 0), "Mannheim", "Mannheim", 22, 40, 3.50);
-        rides[2] = new Ride(drivers[2], cars[2], new GregorianCalendar(116, 1, 29, 10, 50, 0), "Heidelberg", "Heidelberg", 22, 40, 3.50);
+        int[] price = new int[2];
+        price[0] = 2;
+        price[1] = 40;
+
+        rides[0] = new Ride(drivers[0], cars[0], new Date(1456750723000L), "Heidelberg", "Mannheim", 22, 40, price);
+        rides[1] = new Ride(drivers[1], cars[1], new Date(1453750723000L), "Mannheim", "Mannheim", 22, 20, new int[]{3, 80});
+        rides[2] = new Ride(drivers[2], cars[2], new Date(1652743428000L), "Heidelberg", "Heidelberg", 22, 15, new int[]{5, 40});
     }
 
     public static GlobalData getInstance() {
