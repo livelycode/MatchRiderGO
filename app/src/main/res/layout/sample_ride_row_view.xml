@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
@@ -16,8 +14,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Name"
-            app:driverName="Name"
+            android:text="@string/ride_row_driver_name"
             android:drawableBottom="@mipmap/ic_launcher"
             android:id="@+id/ride_row_driver_name"
             android:gravity="center" />
@@ -48,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Datum"
+                android:text="@string/ride_row_date"
                 android:id="@+id/ride_row_date" />
 
             <LinearLayout
@@ -58,7 +55,7 @@
                 android:layout_marginTop="8dp" >
 
                 <TextView
-                    android:text="Start"
+                    android:text="@string/ride_row_start_badge"
                     android:background="@drawable/location_start_badge"
                     style="@style/LocationBadge" />
 
@@ -66,7 +63,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Heidelberg"
+                    android:text="@string/ride_row_default_start_location"
                     android:id="@+id/ride_row_start_location"
                     android:layout_weight="3"
                     android:layout_marginLeft="8dp" />
@@ -79,7 +76,7 @@
                 android:layout_marginTop="4dp" >
 
                 <TextView
-                    android:text="Ziel"
+                    android:text="@string/ride_row_destination_badge"
                     android:background="@drawable/location_destination_badge"
                     style="@style/LocationBadge" />
 
@@ -87,9 +84,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Mannheim"
+                    android:text="@string/ride_row_default_destination_location"
                     android:id="@+id/ride_row_destination_location"
                     android:layout_weight="3"
+                    android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp" />
             </LinearLayout>
 

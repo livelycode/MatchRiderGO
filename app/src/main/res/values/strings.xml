@@ -1,23 +1,50 @@
 <resources>
     <string name="app_name">MatchRiderGO</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- Navigation -->
+    <string name="navigation_drawer_open">Navigationsleiste öffnen</string>
+    <string name="navigation_drawer_close">Navigationsleiste schließen</string>
 
-    <string name="action_settings">Settings</string>
+    <!-- Options (ActionBar) -->
+    <string name="action_settings">Einstellungen</string>
+
+    <!-- LoginActivity -->
     <string name="title_activity_login">MatchRiderGO Login</string>
-
-    <!-- Strings related to login -->
     <string name="prompt_email">E-Mail-Adresse</string>
     <string name="prompt_password">Passwort</string>
     <string name="action_sign_in">Einloggen</string>
     <string name="action_sign_in_short">Login</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_email">Bitte überprüf deine E-Mail-Adresse</string>
+    <string name="error_invalid_password">Das Passwort ist zu kurz</string>
+    <string name="error_incorrect_password">Der Server meldet: Passwort falsch</string>
+    <string name="error_field_required">Dieses Feld muss ausgefüllt sein</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <!-- RideRowView -->
+    <string name="ride_row_driver_name">Name</string>
+    <string name="ride_row_date">Datum</string>
+    <string name="ride_row_start_badge">Start</string>
+    <string name="ride_row_destination_badge">Ziel</string>
+    <string name="ride_row_default_start_location">Heidelberg</string>
+    <string name="ride_row_default_destination_location">Mannheim</string>
+
+    <!-- BookedRidesActivity -->
+    <string name="ride_details_departure_time">Abfahrt:</string>
+    <string name="ride_details_arrival_time">Ankunft:</string>
+    <string name="ride_details_duration">Fahrzeit:</string>
+    <string name="ride_details_price">Preis:</string>
+    <string name="ride_details_distance">Strecke:</string>
+    <string name="ride_details_call_button">Anrufen</string>
+    <string name="ride_details_car_model">Modell:</string>
+    <string name="ride_details_car_license">Kennzeichen:</string>
+    <string name="ride_details_car_color">Farbe:</string>
+
+    <!-- RideDetailsActivity -->
+
+    <!-- UserAccountActivity -->
+    <string name="user_account_title">Mein Konto</string>
+
     <string name="title_activity_blank">BlankActivity</string>
 </resources>
