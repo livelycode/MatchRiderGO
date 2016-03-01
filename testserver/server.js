@@ -64,7 +64,7 @@ app.post("/login", function (req, res) {
   var testUser = serverState.users["11"];
   if (req.body.email === testUser.email) {
     if (req.body.password === testUser.password) {
-      res.send({type: "SESSION", data: testUser.session});
+      res.send(testUser.session);
     } else {
       res.send(warning(states.INVALID_PASSWORD));
     }
@@ -77,7 +77,7 @@ app.post("/booked-rides", function (req, res) {
   var testUser = serverState.users["11"];
   var rides = getUserBookedRides(req.body.userId);
   
-  res.send({type: "BOOKED_RIDES", data: rides});
+  res.send(rides);
   /*
   if (checkSession(req.body.userId, req.headers.session)) {
     if (req.body.userId === testUser.id) {

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.livelycode.matchridergo.databinding.ActivityRideDetailsBinding;
+import com.livelycode.matchridergo.global.ClientState;
 
 public class RideDetailsActivity extends AppCompatActivity {
 
@@ -18,7 +19,7 @@ public class RideDetailsActivity extends AppCompatActivity {
 
         // Fill the layout (`activity_ride_details.xml') with information from GlobalData
         ActivityRideDetailsBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ride_details);
-        binding.setRide(GlobalData.getInstance().getRides()[(int) ride_index]);
+        binding.setRide(ClientState.getInstance().getRides()[(int) ride_index]);
 
         // Enable `Back' button in ActionBar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

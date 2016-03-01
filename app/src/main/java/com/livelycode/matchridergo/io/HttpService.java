@@ -40,7 +40,7 @@ public class HttpService extends IntentService{
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.d(TAG, "Http Service started");
+        Log.d(TAG, "Http DataService started");
 
         final ResultReceiver receiver = intent.getParcelableExtra("receiver");
         String endpoint = intent.getStringExtra("endpoint");

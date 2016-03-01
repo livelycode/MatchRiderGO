@@ -1,6 +1,7 @@
 package com.livelycode.matchridergo;
 
 import com.livelycode.matchridergo.data.*;
+import com.livelycode.matchridergo.global.ClientState;
 
 import android.content.Context;
 import android.content.Intent;
@@ -68,7 +69,7 @@ public class BookedRidesActivity extends MainActivity {
 
         // Create a ListView and fill it with `RideRowView's using BookedRidesArrayAdapter
         ListView bookedRidesList = (ListView) findViewById(R.id.booked_rides_list);
-        final BookedRidesArrayAdapter adapter = new BookedRidesArrayAdapter(this, GlobalData.getInstance().getRides());
+        final BookedRidesArrayAdapter adapter = new BookedRidesArrayAdapter(this, ClientState.getInstance().getRides());
 
         bookedRidesList.setAdapter(adapter);
         bookedRidesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

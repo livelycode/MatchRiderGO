@@ -1,5 +1,7 @@
 package com.livelycode.matchridergo.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -13,7 +15,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
-final public class Ride implements IMatchRiderObject {
+final public class Ride implements IMatchRiderObject, Parcelable {
     private Driver driver;
     private Car car;
     private Date date;
@@ -106,5 +108,47 @@ final public class Ride implements IMatchRiderObject {
     public int[] getPrice() { return this.price; }
 
     public String toJSONString() { return null; }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.driver, flags);
+        dest.writeParcelable(this.car, flags);
+        dest.writeLong(date != null ? date.getTime() : -1);
+        dest.writeString(this.startLocation);
+        dest.writeString(this.destinationLocation);
+        dest.writeDouble(this.distance);
+        dest.writeInt(this.duration);
+        dest.writeIntArray(this.price);
+        dest.writeSerializable(this.cal);
+    }
+
+    protected Ride(Parcel in) {
+        this.driver = in.readParcelable(Driver.class.getClassLoader());
+        this.car = in.readParcelable(Car.class.getClassLoader());
+        long tmpDate = in.readLong();
+        this.date = tmpDate == -1 ? null : new Date(tmpDate);
+        this.startLocation = in.readString();
+        this.destinationLocation = in.readString();
+        this.distance = in.readDouble();
+        this.duration = in.readInt();
+        this.price = in.createIntArray();
+        this.cal = (Calendar) in.readSerializable();
+    }
+
+    public static final Parcelable.Creator<Ride> CREATOR = new Parcelable.Creator<Ride>() {
+        public Ride createFromParcel(Parcel source) {
+            return new Ride(source);
+        }
+
+        public Ride[] newArray(int size) {
+            return new Ride[size];
+        }
+    };
 }
 

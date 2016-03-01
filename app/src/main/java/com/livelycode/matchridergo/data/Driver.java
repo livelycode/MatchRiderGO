@@ -1,11 +1,14 @@
 package com.livelycode.matchridergo.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 
-final public class Driver implements IMatchRiderObject  {
+final public class Driver implements IMatchRiderObject, Parcelable {
     private String name;
     private String description;
     private String email;
@@ -67,4 +70,41 @@ final public class Driver implements IMatchRiderObject  {
     public double getScore() { return this.score; }
 
     public String toJSONString() { return null; }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.description);
+        dest.writeString(this.email);
+        dest.writeString(this.id);
+        dest.writeString(this.photo);
+        dest.writeString(this.phone);
+        dest.writeDouble(this.score);
+    }
+
+    protected Driver(Parcel in) {
+        this.name = in.readString();
+        this.description = in.readString();
+        this.email = in.readString();
+        this.id = in.readString();
+        this.photo = in.readString();
+        this.phone = in.readString();
+        this.score = in.readDouble();
+    }
+
+    public static final Parcelable.Creator<Driver> CREATOR = new Parcelable.Creator<Driver>() {
+        public Driver createFromParcel(Parcel source) {
+            return new Driver(source);
+        }
+
+        public Driver[] newArray(int size) {
+            return new Driver[size];
+        }
+    };
 }

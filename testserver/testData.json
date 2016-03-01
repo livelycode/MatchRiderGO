@@ -129,7 +129,7 @@
             "destination": "43",
             "driver": "22",
             "car": "32",
-            "distance": 20.1
+            "distance": 20.1,
             "duration": 28,
             "date": 1455527700000,
             "price": [2, 40]

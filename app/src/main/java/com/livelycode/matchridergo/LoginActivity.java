@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -16,6 +17,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,15 +29,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.livelycode.matchridergo.data.MatchRiderError;
 import com.livelycode.matchridergo.data.MatchRiderException;
-import com.livelycode.matchridergo.data.Response;
 import com.livelycode.matchridergo.data.Session;
-import com.livelycode.matchridergo.data.User;
-import com.livelycode.matchridergo.io.HttpResultReceiver;
-import com.livelycode.matchridergo.io.HttpService;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.livelycode.matchridergo.global.DataReceiver;
+import com.livelycode.matchridergo.global.DataService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,21 +41,9 @@ import java.util.List;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, HttpResultReceiver.Receiver {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, DataReceiver.Receiver {
 
-
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
+    private String TAG = LoginActivity.class.getSimpleName();
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -66,8 +52,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
     private LoginActivity instance = this;
-
-    private static final String LOGIN_ENDPOINT = "/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +90,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        HttpResultReceiver receiver = new HttpResultReceiver(new Handler());
+        DataReceiver receiver = new DataReceiver(new Handler());
+        receiver.setReceiver(instance);
+        Intent dataIntent = new Intent(Intent.ACTION_SYNC, null, instance, DataService.class);
+        dataIntent.putExtra("receiver", receiver);
+        dataIntent.putExtra("email", mEmailView.getText().toString());
+        dataIntent.putExtra("password", mPasswordView.getText().toString());
+        dataIntent.putExtra("request", DataService.LOGIN);
+        startService(dataIntent);
+
+/*        HttpResultReceiver receiver = new HttpResultReceiver(new Handler());
         receiver.setReceiver(instance);
         Intent httpIntent = new Intent(Intent.ACTION_SYNC, null, instance, HttpService.class);
         httpIntent.putExtra("endpoint", "/login");
@@ -120,70 +113,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         httpIntent.putExtra("receiver", receiver);
         httpIntent.putExtra("data", loginData.toString());
-        startService(httpIntent);
+        startService(httpIntent);*/
 
-
-
-        /*Intent bookedRidesIntent = new Intent(instance, BookedRidesActivity.class);
-        startActivity(bookedRidesIntent);
-        finish();*/
-
-        /*if (mAuthTask != null) {
-            return;
-        }
-
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }
-
-        */
-    }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        //TODO: Check for valid password and email!
     }
 
     /**
@@ -254,34 +186,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     @Override
-    public void onReceiveResult(int resultCode, Bundle resultData) throws MatchRiderException, JSONException {
+    public void onReceiveResult(int resultCode, Bundle resultData) throws MatchRiderException {
         switch (resultCode)
         {
-            case HttpService.STATUS_RUNNING:
+            case DataService.STATUS_RUNNING:
                 showProgress(true);
                 break;
 
-            case HttpService.STATUS_FINISHED:
+            case DataService.STATUS_FINISHED:
                 showProgress(false);
-                Response response = new Response(resultData.getString("response"));
+                MatchRiderError error = resultData.getParcelable("error");
 
-                if (response.hasError()) {
-                    Toast.makeText(this, response.getErrorMessage(), Toast.LENGTH_LONG).show();
-                    break;
-                } else {
-                    Session session = (Session) response.getData();
-                    assert session != null;
-                    GlobalData.getInstance().setSession(session);
+                if(error == null) {
                     Intent bookedRidesIntent = new Intent(instance, BookedRidesActivity.class);
                     startActivity(bookedRidesIntent);
                     finish();
-                    break;
+                } else {
+                    Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
-            case HttpService.STATUS_ERROR:
+                break;
+
+            case DataService.STATUS_ERROR:
                 showProgress(false);
-                String error = resultData.getString(Intent.EXTRA_TEXT);
-                Toast.makeText(this, error, Toast.LENGTH_LONG).show();
                 break;
         }
     }

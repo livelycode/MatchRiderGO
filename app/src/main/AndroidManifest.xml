@@ -17,6 +17,10 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
@@ -32,10 +36,7 @@
             android:label="Meine gebuchten Fahrten"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
@@ -52,7 +53,7 @@
 
         <!-- http service -->
         <service
-            android:name=".io.HttpService"
+            android:name=".global.DataService"
             android:exported="false" />
     </application>
 

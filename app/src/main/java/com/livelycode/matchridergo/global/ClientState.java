@@ -1,4 +1,6 @@
-package com.livelycode.matchridergo;
+package com.livelycode.matchridergo.global;
+
+import android.content.Intent;
 
 import com.livelycode.matchridergo.data.Car;
 import com.livelycode.matchridergo.data.Driver;
@@ -7,23 +9,22 @@ import com.livelycode.matchridergo.data.Session;
 import com.livelycode.matchridergo.data.User;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 
 /**
  * Created by konny on 26/02/16.
  */
-public class GlobalData {
-    private User user = new User("Eve", "eve@livelycode.com", "/assets/images/eve.jpg", "I like riding!", "555-1234", "11", "female", "4321");
+public class ClientState {
+
+    private User user = new User("Eve", "Livelycode", "eve@livelycode.com", "/assets/images/eve.jpg", "I like riding!", "555-1234", "11", "female", "4321");
 
     private Session session;
-    private static final GlobalData globalData = new GlobalData();
+    private static final ClientState CLIENT_STATE = new ClientState();
 
     private Ride[] rides;
     private Driver[] drivers;
     private Car[] cars;
 
-    public GlobalData() {
+    public ClientState() {
         rides = new Ride[3];
         drivers = new Driver[3];
         cars = new Car[3];
@@ -45,8 +46,8 @@ public class GlobalData {
         rides[2] = new Ride(drivers[2], cars[2], new Date(1652743428000L), "Heidelberg", "Heidelberg", 22, 15, new int[]{5, 40});
     }
 
-    public static GlobalData getInstance() {
-        return globalData;
+    public static ClientState getInstance() {
+        return CLIENT_STATE;
     }
 
     public User getUser() {
