@@ -68,7 +68,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@{ride.startLocation}"
+                            android:text="@{ride.startLocation.name}"
                             android:id="@+id/textView6"
                             android:layout_weight="3"
                             android:layout_marginStart="8dp"
@@ -99,7 +99,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@{ride.destinationLocation}"
+                            android:text="@{ride.destinationLocation.name}"
                             android:id="@+id/textView8"
                             android:layout_weight="3"
                             android:layout_marginStart="8dp"
@@ -283,7 +283,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@{ride.driver.getName}"
+                    android:text="@{ride.driver.getFirstName}"
                     android:layout_gravity="center" />
 
                 <ImageView

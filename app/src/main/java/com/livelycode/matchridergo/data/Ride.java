@@ -19,8 +19,8 @@ final public class Ride implements IMatchRiderObject, Parcelable {
     private Driver driver;
     private Car car;
     private Date date;
-    private String startLocation;
-    private String destinationLocation;
+    private MatchPoint startLocation;
+    private MatchPoint destinationLocation;
     private double distance;
     private int duration;
     private int[] price = new int[2];
@@ -30,8 +30,8 @@ final public class Ride implements IMatchRiderObject, Parcelable {
     public Ride(Driver driver,
                 Car car,
                 Date date,
-                String startLocation,
-                String destinationLocation,
+                MatchPoint startLocation,
+                MatchPoint destinationLocation,
                 double distance,
                 int duration,
                 int[] price) {
@@ -64,8 +64,8 @@ final public class Ride implements IMatchRiderObject, Parcelable {
                 "driver",
                 "car",
                 "date",
-                "startLocation",
-                "destinationLocation",
+                "start",
+                "destination",
                 "distance",
                 "duration",
                 "price"
@@ -80,15 +80,14 @@ final public class Ride implements IMatchRiderObject, Parcelable {
         JSONArray JSONPrice = json.getJSONArray("price");
         int[] price = new int[] {JSONPrice.getInt(0), JSONPrice.getInt(1)};
 
-        new Ride(new Driver(json.getJSONObject("driver")),
-                 new Car(json.getJSONObject("car")),
-                 new Date(json.getInt("date")),
-                 json.getString("startLocation"),
-                 json.getString("destinationLocation"),
-                 json.getDouble("distance"),
-                 json.getInt("duration"),
-                 price
-        );
+        this.driver = new Driver(json.getJSONObject("driver"));
+        this.car = new Car(json.getJSONObject("car"));
+        this.date = new Date(json.getInt("date"));
+        this.startLocation = new MatchPoint(json.getJSONObject("start"));
+        this.destinationLocation = new MatchPoint(json.getJSONObject("destination"));
+        this.distance = json.getDouble("distance");
+        this.duration = json.getInt("duration");
+        this.price = price;
     }
 
     public Driver getDriver() { return this.driver; }
@@ -100,8 +99,8 @@ final public class Ride implements IMatchRiderObject, Parcelable {
     public int getHours() { return this.cal.get(Calendar.HOUR); }
     public int getMinutes() { return this.cal.get(Calendar.MINUTE); }
 
-    public String getStartLocation() { return this.startLocation; }
-    public String getDestinationLocation() { return this.destinationLocation; }
+    public MatchPoint getStartLocation() { return this.startLocation; }
+    public MatchPoint getDestinationLocation() { return this.destinationLocation; }
 
     public double getDistance() { return this.distance; }
     public double getDuration() { return this.duration; }
@@ -117,11 +116,11 @@ final public class Ride implements IMatchRiderObject, Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(this.driver, flags);
-        dest.writeParcelable(this.car, flags);
+        dest.writeParcelable(this.driver, 0);
+        dest.writeParcelable(this.car, 0);
         dest.writeLong(date != null ? date.getTime() : -1);
-        dest.writeString(this.startLocation);
-        dest.writeString(this.destinationLocation);
+        dest.writeParcelable(this.startLocation, 0);
+        dest.writeParcelable(this.destinationLocation, 0);
         dest.writeDouble(this.distance);
         dest.writeInt(this.duration);
         dest.writeIntArray(this.price);
@@ -133,15 +132,15 @@ final public class Ride implements IMatchRiderObject, Parcelable {
         this.car = in.readParcelable(Car.class.getClassLoader());
         long tmpDate = in.readLong();
         this.date = tmpDate == -1 ? null : new Date(tmpDate);
-        this.startLocation = in.readString();
-        this.destinationLocation = in.readString();
+        this.startLocation = in.readParcelable(MatchPoint.class.getClassLoader());
+        this.destinationLocation = in.readParcelable(MatchPoint.class.getClassLoader());
         this.distance = in.readDouble();
         this.duration = in.readInt();
         this.price = in.createIntArray();
         this.cal = (Calendar) in.readSerializable();
     }
 
-    public static final Parcelable.Creator<Ride> CREATOR = new Parcelable.Creator<Ride>() {
+    public static final Creator<Ride> CREATOR = new Creator<Ride>() {
         public Ride createFromParcel(Parcel source) {
             return new Ride(source);
         }

@@ -42,9 +42,6 @@ import java.util.List;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, DataReceiver.Receiver {
-
-    private String TAG = LoginActivity.class.getSimpleName();
-
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
@@ -98,23 +95,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         dataIntent.putExtra("password", mPasswordView.getText().toString());
         dataIntent.putExtra("request", DataService.LOGIN);
         startService(dataIntent);
-
-/*        HttpResultReceiver receiver = new HttpResultReceiver(new Handler());
-        receiver.setReceiver(instance);
-        Intent httpIntent = new Intent(Intent.ACTION_SYNC, null, instance, HttpService.class);
-        httpIntent.putExtra("endpoint", "/login");
-        JSONObject loginData = new JSONObject();
-        try {
-            loginData.put("email", mEmailView.getText().toString());
-            loginData.put("password", mPasswordView.getText().toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        httpIntent.putExtra("receiver", receiver);
-        httpIntent.putExtra("data", loginData.toString());
-        startService(httpIntent);*/
-
         //TODO: Check for valid password and email!
     }
 

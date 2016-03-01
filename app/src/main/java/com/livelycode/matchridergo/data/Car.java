@@ -38,10 +38,9 @@ public class Car implements IMatchRiderObject, Parcelable {
             }
         }
 
-        new Car(json.getString("name"),
-                json.getString("color"),
-                json.getString("license")
-        );
+        this.name = json.getString("name");
+        this.color = json.getString("color");
+        this.license = json.getString("license");
     }
 
     public String getName() { return this.name; }
@@ -69,7 +68,7 @@ public class Car implements IMatchRiderObject, Parcelable {
         this.license = in.readString();
     }
 
-    public static final Parcelable.Creator<Car> CREATOR = new Parcelable.Creator<Car>() {
+    public static final Creator<Car> CREATOR = new Creator<Car>() {
         public Car createFromParcel(Parcel source) {
             return new Car(source);
         }

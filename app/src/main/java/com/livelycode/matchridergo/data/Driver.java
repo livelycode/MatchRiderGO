@@ -9,7 +9,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 final public class Driver implements IMatchRiderObject, Parcelable {
-    private String name;
+    private String firstName;
+    private String lastName;
     private String description;
     private String email;
     private String id;
@@ -17,8 +18,9 @@ final public class Driver implements IMatchRiderObject, Parcelable {
     private String phone;
     private double score;
 
-    public Driver(String name, String email, String photo, String description, String phone, String id, double score) {
-        this.name = name;
+    public Driver(String firstName, String lastName, String email, String photo, String description, String phone, String id, double score) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.photo = photo;
         this.description = description;
@@ -28,13 +30,14 @@ final public class Driver implements IMatchRiderObject, Parcelable {
     }
 
     public Driver(HashMap<String, Object> driverConfig) {
-        new Driver((String) driverConfig.get("name"),
-                   (String) driverConfig.get("email"),
-                   (String) driverConfig.get("photo"),
-                   (String) driverConfig.get("description"),
-                   (String) driverConfig.get("phone"),
-                   (String) driverConfig.get("id"),
-                   (double) driverConfig.get("score"));
+        new Driver((String) driverConfig.get("firstName"),
+                (String) driverConfig.get("lastName"),
+                (String) driverConfig.get("email"),
+                (String) driverConfig.get("photo"),
+                (String) driverConfig.get("description"),
+                (String) driverConfig.get("phone"),
+                (String) driverConfig.get("id"),
+                (double) driverConfig.get("score"));
     }
 
     public Driver(JSONObject json) throws JSONException, MatchRiderException {
@@ -54,22 +57,51 @@ final public class Driver implements IMatchRiderObject, Parcelable {
             }
         }
 
-        new Driver(json.getString("name"),
-                   json.getString("email"),
-                   json.getString("photo"),
-                   json.getString("description"),
-                   json.getString("phone"),
-                   json.getString("id"),
-                   json.getDouble("score")
-        );
+        this.firstName = json.getString("firstName");
+        this.lastName = json.getString("lastName");
+        this.email = json.getString("email");
+        this.photo = json.getString("photo");
+        this.description = json.getString("description");
+        this.phone = json.getString("phone");
+        this.id = json.getString("id");
+        this.score = json.getDouble("score");
     }
 
-    public String getName() { return this.name; }
-    public String getDescription() { return this.description; }
+    public String getFirstName() {
+        return this.firstName;
+    }
 
-    public double getScore() { return this.score; }
+    public String getDescription() {
+        return this.description;
+    }
 
-    public String toJSONString() { return null; }
+    public double getScore() {
+        return this.score;
+    }
+
+    public String toJSONString() {
+        return null;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
 
 
     @Override
@@ -79,7 +111,8 @@ final public class Driver implements IMatchRiderObject, Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.name);
+        dest.writeString(this.firstName);
+        dest.writeString(this.lastName);
         dest.writeString(this.description);
         dest.writeString(this.email);
         dest.writeString(this.id);
@@ -89,7 +122,8 @@ final public class Driver implements IMatchRiderObject, Parcelable {
     }
 
     protected Driver(Parcel in) {
-        this.name = in.readString();
+        this.firstName = in.readString();
+        this.lastName = in.readString();
         this.description = in.readString();
         this.email = in.readString();
         this.id = in.readString();
@@ -98,7 +132,7 @@ final public class Driver implements IMatchRiderObject, Parcelable {
         this.score = in.readDouble();
     }
 
-    public static final Parcelable.Creator<Driver> CREATOR = new Parcelable.Creator<Driver>() {
+    public static final Creator<Driver> CREATOR = new Creator<Driver>() {
         public Driver createFromParcel(Parcel source) {
             return new Driver(source);
         }
