@@ -31,7 +31,7 @@ class BookedRidesController: UIViewController, UITableViewDataSource, UITableVie
     }
     
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BookedRideCell", forIndexPath: indexPath) as RideRowCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("BookedRideCell", forIndexPath: indexPath) as! RideRowCell
         
         cell.driverName.text = items[0]
         cell.startLocation.text = items[0]

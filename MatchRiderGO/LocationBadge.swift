@@ -9,7 +9,7 @@
 import UIKit
 
 class LocationBadge: UILabel {
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
         self.setup()
     }
@@ -28,7 +28,7 @@ class LocationBadge: UILabel {
     }
     
     func textLayer() -> CATextLayer {
-        return self.layer as CATextLayer
+        return self.layer as! CATextLayer
     }
     
     func setup() {
