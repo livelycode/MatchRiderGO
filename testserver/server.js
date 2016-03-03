@@ -76,7 +76,6 @@ app.post("/login", function (req, res) {
 app.post("/booked-rides", function (req, res) {
   var testUser = serverState.users["11"];
   var rides = getUserBookedRides(req.body.userId);
-  console.log(rides);
   res.send(rides);
   /*
   if (checkSession(req.body.userId, req.headers.session)) {

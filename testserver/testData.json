@@ -12,7 +12,7 @@
             "id": "11",
             "gender": "female",
             "password": "12345",
-            "bookedRides": ["52"],
+            "bookedRides": ["51", "52", "53"],
             "session":
             {
                 "id": "ab12",
@@ -71,14 +71,16 @@
             "id": "31",
             "photo": "/assets/images/car.jpg",
             "model": "russian",
-            "color": "grey"
+            "color": "grey",
+            "license": "HD"
         },
         "32":
         {
             "id": "32",
             "photo": "/assets/images/car2.jpg",
             "model": "soviet",
-            "color": "red"
+            "color": "red",
+            "license": "MA"
         }
     },
     "matchpoints":
