@@ -43,7 +43,8 @@ final public class Driver implements IMatchRiderObject, Parcelable {
     public Driver(JSONObject json) throws JSONException, MatchRiderException {
         String[] requiredFields = {
                 "id",
-                "name",
+                "firstName",
+                "lastName",
                 "email",
                 "photo",
                 "score",
@@ -53,7 +54,7 @@ final public class Driver implements IMatchRiderObject, Parcelable {
 
         for (String requiredField : requiredFields) {
             if (!json.has(requiredField)) {
-                throw new MatchRiderException("Missing required JSON field in CAR:" + requiredField);
+                System.out.println("Missing required JSON field in DRIVER:" + requiredField);
             }
         }
 
@@ -64,7 +65,7 @@ final public class Driver implements IMatchRiderObject, Parcelable {
         this.description = json.getString("description");
         this.phone = json.getString("phone");
         this.id = json.getString("id");
-        this.score = json.getDouble("score");
+        this.score = json.getInt("score");
     }
 
     public String getFirstName() {

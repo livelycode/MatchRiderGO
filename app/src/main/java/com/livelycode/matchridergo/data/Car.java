@@ -9,27 +9,24 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class Car implements IMatchRiderObject, Parcelable {
-    private String name;
+    private String model;
     private String color = "Grau";
     private String license = "HD";
+    private String photo;
 
-    public Car(String name, String color, String license) {
-        this.name = name;
+    public Car(String model, String color, String license, String photo) {
+        this.model = model;
         this.color = color;
         this.license = license;
-    }
-
-    public Car(HashMap<String, Object> carConfiguration) {
-        this.name = (String) carConfiguration.get("name");
-        this.color = (String) carConfiguration.get("color");
-        this.license = (String) carConfiguration.get("license");
+        this.photo = photo;
     }
 
     public Car(JSONObject json) throws JSONException, MatchRiderException {
         String[] requiredFields = {
-                "name",
+                "model",
                 "color",
-                "license"
+                "license",
+                "photo"
         };
 
         for (String requiredField : requiredFields) {
@@ -38,16 +35,21 @@ public class Car implements IMatchRiderObject, Parcelable {
             }
         }
 
-        this.name = json.getString("name");
+        this.model = json.getString("model");
         this.color = json.getString("color");
         this.license = json.getString("license");
+        this.photo = json.getString("photo");
     }
 
-    public String getName() { return this.name; }
+    public String getModel() { return this.model; }
     public String getColor() { return this.color; }
     public String getLicense() { return this.license; }
 
     public String toJSONString() { return null; }
+
+    public String getPhoto() {
+        return photo;
+    }
 
 
     @Override
@@ -57,15 +59,17 @@ public class Car implements IMatchRiderObject, Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.name);
+        dest.writeString(this.model);
         dest.writeString(this.color);
         dest.writeString(this.license);
+        dest.writeString(this.photo);
     }
 
     protected Car(Parcel in) {
-        this.name = in.readString();
+        this.model = in.readString();
         this.color = in.readString();
         this.license = in.readString();
+        this.photo = in.readString();
     }
 
     public static final Creator<Car> CREATOR = new Creator<Car>() {

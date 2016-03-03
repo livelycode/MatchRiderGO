@@ -25,6 +25,8 @@ final public class Ride implements IMatchRiderObject, Parcelable {
     private int duration;
     private int[] price = new int[2];
 
+    private String TAG = Ride.class.getSimpleName();
+
     Calendar cal = Calendar.getInstance();
 
     public Ride(Driver driver,
@@ -59,7 +61,7 @@ final public class Ride implements IMatchRiderObject, Parcelable {
         this.price = (double) rideConfiguration.get("price");
     }*/
 
-    public Ride(JSONObject json) throws JSONException, MatchRiderException {
+    public Ride(JSONObject json) throws JSONException {
         String[] requiredFields = {
                 "driver",
                 "car",
@@ -73,18 +75,50 @@ final public class Ride implements IMatchRiderObject, Parcelable {
 
         for (String requiredField : requiredFields) {
             if (!json.has(requiredField)) {
-                throw new MatchRiderException("Missing required JSON field in RIDE:" + requiredField);
+                Log.d(Ride.class.getSimpleName(), "Missing required JSON field in RIDE:" + requiredField);
             }
         }
 
-        JSONArray JSONPrice = json.getJSONArray("price");
-        int[] price = new int[] {JSONPrice.getInt(0), JSONPrice.getInt(1)};
+        JSONArray JSONPrice = null;
+        try {
+            JSONPrice = json.getJSONArray("price");
+        } catch (JSONException e) {
+            Log.d(TAG, "price array");
+        }
 
-        this.driver = new Driver(json.getJSONObject("driver"));
-        this.car = new Car(json.getJSONObject("car"));
+        int[] price = new int[2];
+        try {
+            price = new int[] {JSONPrice.getInt(0), JSONPrice.getInt(1)};
+        } catch (JSONException e) {
+            Log.d(TAG, "price object");
+        }
+
+        try {
+            this.driver = new Driver(json.getJSONObject("driver"));
+        } catch (MatchRiderException e) {
+            Log.d(TAG, "driver" + e.getMessage());
+        }
+
+        try {
+            this.car = new Car(json.getJSONObject("car"));
+        } catch (MatchRiderException e) {
+            Log.d(TAG, "car" + e.getMessage());
+        }
+
         this.date = new Date(json.getInt("date"));
-        this.startLocation = new MatchPoint(json.getJSONObject("start"));
-        this.destinationLocation = new MatchPoint(json.getJSONObject("destination"));
+
+        try {
+            this.startLocation = new MatchPoint(json.getJSONObject("start"));
+        } catch (MatchRiderException e) {
+            Log.d(TAG, "mp1");
+        }
+        try {
+            this.destinationLocation = new MatchPoint(json.getJSONObject("destination"));
+        } catch (MatchRiderException e) {
+            Log.d(TAG, "mp2");
+        }
+
+
         this.distance = json.getDouble("distance");
         this.duration = json.getInt("duration");
         this.price = price;

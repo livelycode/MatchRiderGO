@@ -25,6 +25,7 @@ public class ClientState {
     private Car[] cars;
 
     public ClientState() {
+        session = new Session("ab12", "11");
         /*rides = new Ride[3];
         drivers = new Driver[3];
         cars = new Car[3];

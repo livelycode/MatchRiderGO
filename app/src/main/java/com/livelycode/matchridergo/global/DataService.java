@@ -36,28 +36,36 @@ public class DataService extends IntentService{
 
     public DataService() {
         super(TAG);
-        Log.i(TAG, "Starting data service!");
     }
 
     private Bundle parsedBookedRides() {
+        JSONObject request = new JSONObject();
+
+        try {
+            request.put("userId", ClientState.getInstance().getSession().getUserId());
+        } catch (JSONException e) {
+            Log.d(TAG, "Booked Rides request JSON creation error: " + e.getMessage());
+        }
+
         JSONArray jsonBookedRides = null;
 
         try {
-            jsonBookedRides = new JSONArray(HttpConnector.post("/booked-rides", ClientState.getInstance().getSession().getUserId()));
+            jsonBookedRides = new JSONArray(HttpConnector.post("/booked-rides", request.toString()));
         } catch (JSONException e) {
             Log.d(TAG, "JSON Array parsing MatchRiderError: " + e.getMessage());
         } catch (IOException e) {
             Log.d(TAG, "Http MatchRiderError: " + e.getMessage());
         }
 
-        Ride[] rides = new Ride[]{};
+        System.out.println(jsonBookedRides.toString());
+
+        Ride[] rides = new Ride[jsonBookedRides.length()];
         for(int i=0; i < jsonBookedRides.length(); i++) {
             try {
-                rides[i] = new Ride(jsonBookedRides.getJSONObject(i));
+                JSONObject jsonRide = jsonBookedRides.getJSONObject(i);
+                rides[i] = new Ride(jsonRide);
             } catch (JSONException e) {
                 Log.d(TAG, "Parsed Ride JSON MatchRiderError: " + e.getMessage());
-            } catch (MatchRiderException e) {
-                Log.d(TAG, "Ride Creation MatchRiderError: " + e.getMessage());
             }
         }
 
