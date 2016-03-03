@@ -2,6 +2,7 @@ package com.livelycode.matchridergo.global;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.databinding.tool.util.L;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class DataService extends IntentService{
     public static final String ACCOUNT_DETAILS = "ACCOUNT_DETAILS";
     public static final String LOGIN = "LOGIN";
     public static final String BOOKED_RIDES = "BOOKED_RIDES";
+    public static final String RIDE_DETAILS ="RIDE_DETAILS";
 
     public static final int STATUS_RUNNING = 0;
     public static final int STATUS_FINISHED = 1;
@@ -38,7 +40,12 @@ public class DataService extends IntentService{
         super(TAG);
     }
 
+    /**
+     * Send BOOKED_RIDES request to backend, parse JSONARRAY
+     * @return
+     */
     private Bundle parsedBookedRides() {
+        //TODO: handle errors
         JSONObject request = new JSONObject();
 
         try {
@@ -57,8 +64,6 @@ public class DataService extends IntentService{
             Log.d(TAG, "Http MatchRiderError: " + e.getMessage());
         }
 
-        System.out.println(jsonBookedRides.toString());
-
         Ride[] rides = new Ride[jsonBookedRides.length()];
         for(int i=0; i < jsonBookedRides.length(); i++) {
             try {
@@ -68,6 +73,8 @@ public class DataService extends IntentService{
                 Log.d(TAG, "Parsed Ride JSON MatchRiderError: " + e.getMessage());
             }
         }
+
+        ClientState.getInstance().setRides(rides);
 
         Bundle bundle = new Bundle();
         bundle.putParcelableArray("rides", rides);
@@ -119,6 +126,12 @@ public class DataService extends IntentService{
         return bundle;
     }
 
+    private Bundle rideDetail(long rideIndex) {
+        Bundle bundle = new Bundle();
+        Ride ride = ClientState.getInstance().getRides()[(int) rideIndex];
+        bundle.putParcelable("ride", ride);
+        return bundle;
+    }
     @Override
     /**
      * Dispatches incoming requests from activities, contacts http service if necessary
@@ -136,6 +149,8 @@ public class DataService extends IntentService{
                 receiver.send(STATUS_FINISHED, parsedLogin(intent.getStringExtra("email"),
                         intent.getStringExtra("password")));
                 break;
+            case RIDE_DETAILS:
+                receiver.send(STATUS_FINISHED, rideDetail(intent.getExtras().getLong("ride_index")));
         }
     }
 }

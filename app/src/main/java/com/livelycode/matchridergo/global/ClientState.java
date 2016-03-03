@@ -20,6 +20,26 @@ public class ClientState {
     private Session session;
     private static final ClientState CLIENT_STATE = new ClientState();
 
+    public void setRides(Ride[] rides) {
+        this.rides = rides;
+    }
+
+    public Driver[] getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(Driver[] drivers) {
+        this.drivers = drivers;
+    }
+
+    public Car[] getCars() {
+        return cars;
+    }
+
+    public void setCars(Car[] cars) {
+        this.cars = cars;
+    }
+
     private Ride[] rides;
     private Driver[] drivers;
     private Car[] cars;
