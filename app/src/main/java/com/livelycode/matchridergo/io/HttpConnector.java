@@ -17,8 +17,8 @@ import java.net.URL;
 public class HttpConnector {
     private static final String TAG = HttpConnector.class.getSimpleName();
 
-    private static final String SERVER_ADDRESS = "http://46.101.130.96:3000";
-    private static final String LOCAL_ADDRESS = "http://192.168.0.20:3000";
+    public static final String SERVER_ADDRESS = "http://46.101.130.96:3000";
+    public static final String LOCAL_ADDRESS = "http://192.168.0.20:3000";
 
     /**
      * Create server connection to endpoint and makes POST call

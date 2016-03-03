@@ -151,6 +151,7 @@ public class DataService extends IntentService{
                 break;
             case RIDE_DETAILS:
                 receiver.send(STATUS_FINISHED, rideDetail(intent.getExtras().getLong("ride_index")));
+                break;
         }
     }
 }

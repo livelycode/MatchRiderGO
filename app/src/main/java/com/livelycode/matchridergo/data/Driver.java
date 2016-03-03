@@ -1,11 +1,19 @@
 package com.livelycode.matchridergo.data;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.livelycode.matchridergo.io.HttpConnector;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 
 final public class Driver implements IMatchRiderObject, Parcelable {
@@ -61,11 +69,28 @@ final public class Driver implements IMatchRiderObject, Parcelable {
         this.firstName = json.getString("firstName");
         this.lastName = json.getString("lastName");
         this.email = json.getString("email");
-        this.photo = json.getString("photo");
+        this.photo = HttpConnector.LOCAL_ADDRESS + json.getString("photo");
         this.description = json.getString("description");
         this.phone = json.getString("phone");
         this.id = json.getString("id");
         this.score = json.getInt("score");
+    }
+
+    private Bitmap fetchPhoto(String photoUrl) {
+        URL url = null;
+        try {
+            url = new URL(photoUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        InputStream is = null;
+        try {
+            is = url.openConnection().getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Bitmap bitMap = BitmapFactory.decodeStream(is);
+        return bitMap;
     }
 
     public String getFirstName() {

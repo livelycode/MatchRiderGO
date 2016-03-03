@@ -15,8 +15,10 @@ import com.livelycode.matchridergo.global.DataReceiver;
 import com.livelycode.matchridergo.global.DataService;
 
 public class RideDetailsActivity extends AppCompatActivity implements DataReceiver.Receiver{
+
     private final String TAG = RideDetailsActivity.class.getSimpleName();
     private RideDetailsActivity instance = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,6 @@ public class RideDetailsActivity extends AppCompatActivity implements DataReceiv
             case DataService.STATUS_RUNNING:
                 break;
             case DataService.STATUS_FINISHED:
-
                 ActivityRideDetailsBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ride_details);
                 binding.setRide((Ride) bundle.getParcelable("ride"));
                 // Enable `Back' button in ActionBar
