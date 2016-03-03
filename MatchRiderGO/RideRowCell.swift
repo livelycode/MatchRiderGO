@@ -8,12 +8,9 @@
 
 import UIKit
 
-class RideRowViewTableViewCell: UITableViewCell {
+class RideRowCell: UITableViewCell {
 
     @IBOutlet weak var driverName: UILabel!
-    @IBOutlet weak var driverImage: UIImageView!
-    @IBOutlet weak var driverScore: UILabel!
-    @IBOutlet weak var rideDate: UILabel!
     
     @IBOutlet weak var startLocation: UILabel!
     @IBOutlet weak var destinationLocation: UILabel!

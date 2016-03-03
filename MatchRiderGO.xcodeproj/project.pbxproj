@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90F9C961C884B16003E67B2 /* LocationBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90F9C951C884B16003E67B2 /* LocationBadge.swift */; };
 		E966482B1C85DA50005DC742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966482A1C85DA50005DC742 /* AppDelegate.swift */; };
 		E966482D1C85DA50005DC742 /* BookedRidesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966482C1C85DA50005DC742 /* BookedRidesController.swift */; };
 		E966482F1C85DA50005DC742 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966482E1C85DA50005DC742 /* SecondViewController.swift */; };
@@ -15,8 +16,10 @@
 		E96648371C85DA50005DC742 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96648351C85DA50005DC742 /* LaunchScreen.xib */; };
 		E96648431C85DA50005DC742 /* MatchRiderGOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96648421C85DA50005DC742 /* MatchRiderGOTests.swift */; };
 		E966484D1C85DABD005DC742 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966484C1C85DABD005DC742 /* LoginViewController.swift */; };
-		E96648521C85DB16005DC742 /* RideRowViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96648501C85DB16005DC742 /* RideRowViewTableViewCell.swift */; };
-		E96648531C85DB16005DC742 /* RideRowViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96648511C85DB16005DC742 /* RideRowViewTableViewCell.xib */; };
+		E96648521C85DB16005DC742 /* RideRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96648501C85DB16005DC742 /* RideRowCell.swift */; };
+		E96648531C85DB16005DC742 /* RideRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E96648511C85DB16005DC742 /* RideRowCell.xib */; };
+		E96648551C85E632005DC742 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96648541C85E632005DC742 /* Ride.swift */; };
+		E96648571C85FBD1005DC742 /* RideDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96648561C85FBD1005DC742 /* RideDetailsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E90F9C951C884B16003E67B2 /* LocationBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationBadge.swift; sourceTree = "<group>"; };
 		E96648251C85DA50005DC742 /* MatchRiderGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchRiderGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96648291C85DA50005DC742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E966482A1C85DA50005DC742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,8 +46,10 @@
 		E96648411C85DA50005DC742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E96648421C85DA50005DC742 /* MatchRiderGOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRiderGOTests.swift; sourceTree = "<group>"; };
 		E966484C1C85DABD005DC742 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		E96648501C85DB16005DC742 /* RideRowViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideRowViewTableViewCell.swift; sourceTree = "<group>"; };
-		E96648511C85DB16005DC742 /* RideRowViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideRowViewTableViewCell.xib; sourceTree = "<group>"; };
+		E96648501C85DB16005DC742 /* RideRowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideRowCell.swift; sourceTree = "<group>"; };
+		E96648511C85DB16005DC742 /* RideRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideRowCell.xib; sourceTree = "<group>"; };
+		E96648541C85E632005DC742 /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
+		E96648561C85FBD1005DC742 /* RideDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,7 @@
 				E96648351C85DA50005DC742 /* LaunchScreen.xib */,
 				E96648281C85DA50005DC742 /* Supporting Files */,
 				E966484C1C85DABD005DC742 /* LoginViewController.swift */,
+				E96648561C85FBD1005DC742 /* RideDetailsController.swift */,
 			);
 			path = MatchRiderGO;
 			sourceTree = "<group>";
@@ -127,6 +134,7 @@
 		E966484E1C85DAF9005DC742 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				E96648541C85E632005DC742 /* Ride.swift */,
 			);
 			name = data;
 			sourceTree = "<group>";
@@ -134,8 +142,9 @@
 		E966484F1C85DAFE005DC742 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				E96648501C85DB16005DC742 /* RideRowViewTableViewCell.swift */,
-				E96648511C85DB16005DC742 /* RideRowViewTableViewCell.xib */,
+				E96648501C85DB16005DC742 /* RideRowCell.swift */,
+				E96648511C85DB16005DC742 /* RideRowCell.xib */,
+				E90F9C951C884B16003E67B2 /* LocationBadge.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -223,7 +232,7 @@
 				E96648321C85DA50005DC742 /* Main.storyboard in Resources */,
 				E96648371C85DA50005DC742 /* LaunchScreen.xib in Resources */,
 				E96648341C85DA50005DC742 /* Images.xcassets in Resources */,
-				E96648531C85DB16005DC742 /* RideRowViewTableViewCell.xib in Resources */,
+				E96648531C85DB16005DC742 /* RideRowCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,11 +250,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E96648521C85DB16005DC742 /* RideRowViewTableViewCell.swift in Sources */,
+				E96648521C85DB16005DC742 /* RideRowCell.swift in Sources */,
+				E96648571C85FBD1005DC742 /* RideDetailsController.swift in Sources */,
+				E90F9C961C884B16003E67B2 /* LocationBadge.swift in Sources */,
 				E966484D1C85DABD005DC742 /* LoginViewController.swift in Sources */,
 				E966482F1C85DA50005DC742 /* SecondViewController.swift in Sources */,
 				E966482B1C85DA50005DC742 /* AppDelegate.swift in Sources */,
 				E966482D1C85DA50005DC742 /* BookedRidesController.swift in Sources */,
+				E96648551C85E632005DC742 /* Ride.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +449,7 @@
 				E96648481C85DA50005DC742 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E96648491C85DA50005DC742 /* Build configuration list for PBXNativeTarget "MatchRiderGOTests" */ = {
 			isa = XCConfigurationList;
@@ -445,6 +458,7 @@
 				E966484B1C85DA50005DC742 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
